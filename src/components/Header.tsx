@@ -1,0 +1,21 @@
+import Link from 'next/link';
+import Image from 'next/image';
+import styles from './Header.module.css';
+
+export default function Header() {
+  return (
+    <header className={styles.header}>
+      <div className={`container ${styles.container}`}>
+        <Link href="/" className={styles.logo}>
+          <Image src="/icon.png" alt="Khanra Travel Logo" width={32} height={32} className={styles.iconImage} />
+          <span className={styles.title}>Khanra Travel</span>
+        </Link>
+        <nav className={styles.nav}>
+          <Link href="/directory" className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            📍 Places Directory
+          </Link>
+        </nav>
+      </div>
+    </header>
+  );
+}

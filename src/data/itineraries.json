@@ -1,0 +1,1442 @@
+[
+  {
+    "id": "northern-tamil-nadu-jain-tirths",
+    "title": "Northern Tamil Nadu Jain Tirths",
+    "duration": "2 Days",
+    "states": [
+      "Tamil Nadu"
+    ],
+    "author": "Souvik Khanra",
+    "authorInstagram": "https://www.instagram.com/_yehi_to_hai_",
+    "description": "A pilgrimage through the ancient Jain heritage sites of Northern Tamil Nadu, including mountain temples and rock-cut shrines.",
+    "days": [
+      {
+        "day": 1,
+        "stops": [
+          {
+            "tirthId": "shree-kshetra-arihantagiri",
+            "name": "Shree Kshetra Arihantagiri",
+            "type": "Tirth",
+            "description": "Major pilgrimage center located 230 km from Bangalore. A gurukul is also being run by the trust for young students, with a large temple complex."
+          },
+          {
+            "tirthId": "arihanthgiri-ancient-mountain-temples",
+            "name": "Arihanthgiri Ancient Mountain Temples",
+            "type": "Tirth",
+            "description": "Features 3-4 temples, 18-foot ancient idol of Neminatha, Samadhi Sthal of Acharya Shri Samantabhadra and Pandava Caves."
+          },
+          {
+            "tirthId": "arani-saidapet-jain-temple",
+            "name": "Arani Saidapet Jain Temple",
+            "type": "Temple",
+            "description": "Located 19 km from Arihanthgiri."
+          },
+          {
+            "tirthId": "shri-1008-bhagwan-adinath-digambar-jain-temple-arani",
+            "name": "Shri 1008 Bhagwan Adinath Digambar Jain Temple, Arani",
+            "type": "Temple",
+            "description": "Another significant Digambar Jain temple in Arani."
+          },
+          {
+            "tirthId": "poondi-ponezhil-nathar-digamber-jain-arugar-temple",
+            "name": "Poondi Ponezhil Nathar Digamber Jain (Arugar) Temple",
+            "type": "Temple",
+            "description": "Ancient Jain temple located in Poondi, 6 kms from Arani"
+          },
+          {
+            "tirthId": "ancient-jain-temple-munigiri-karandai",
+            "name": "Ancient Jain Temple Munigiri, Karandai",
+            "type": "Temple",
+            "description": "Historical temple site located 45 km from Poondi. With a magnificent seated idol of 1008 Kuntunatha Bhagavan, finished in a radiant golden hue, this place also has the honour of being tapasthali of Acharya Shri Akalank Swamy."
+          },
+          {
+            "tirthId": "thiruppanamoor-digambar-jain-temple-karandai",
+            "name": "Thiruppanamoor Digambar Jain Temple, Karandai",
+            "type": "Temple",
+            "description": "With moolnayak as Bhagwan Pushpadantnath, this temple is just 1 km from Munigiri temple, Karandai."
+          },
+          {
+            "tirthId": "thiruparuthikundram-sri-digambar-jain-temples-kanchivaram",
+            "name": "Thiruparuthikundram Sri Digambar Jain Temples, Kanchivaram",
+            "type": "Temple",
+            "description": "Important Jain heritage site in Kanchivaram, 20 kms from Karandai."
+          },
+          {
+            "tirthId": "ponnur-malai-dharmshala",
+            "name": "Ponnur Malai Dharmshala",
+            "type": "Dharmshala",
+            "description": "Night stay featuring 2 temples."
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "stops": [
+          {
+            "tirthId": "acharya-kund-kund-charan-ponnur-hill",
+            "name": "Acharya Kund Kund Charan, Ponnur Hill",
+            "type": "Tirth",
+            "description": "The sacred ancient footprints of Acharya Kund Kund."
+          },
+          {
+            "tirthId": "sri-adinath-digamber-jain-temple-ponnur-malai",
+            "name": "Sri Adinath Digamber Jain Temple, Ponnur Malai",
+            "type": "Tirth",
+            "description": "Includes 3-4 other temples at the site."
+          },
+          {
+            "tirthId": "thirakoil-jain-hill",
+            "name": "Thirakoil Jain Hill",
+            "type": "Temple",
+            "description": "Contains rock-cut cave temples on the hill and at the base, 8 kms from Ponnur Malai."
+          },
+          {
+            "tirthId": "ariyampoondi-rock-cut-mahavir-jain-temple",
+            "name": "Ariyampoondi Rock Cut Mahavir Jain Temple",
+            "type": "Temple",
+            "description": "An ancient rock-cut temple dedicated to Bhagwan Mahavir, 6 kms from Ponnur Malai."
+          },
+          {
+            "tirthId": "sri-1008-adinath-digambar-jain-temple-ponnur",
+            "name": "Sri 1008 Adinath Digambar Jain Temple, Ponnur",
+            "type": "Temple",
+            "description": "Local Adinath temple in the Ponnur city, 12 kms from Ariyampoondi."
+          },
+          {
+            "tirthId": "ancient-bhagwan-adinath-temple-salukkai",
+            "name": "Ancient Bhagwan Adinath Temple, Salukkai",
+            "type": "Temple",
+            "description": "A 2300-year-old ancient temple site, 16 kms from Ponnur city."
+          },
+          {
+            "tirthId": "1008-bhagavan-sri-adinath-digambar-jain-basadi-vizhukkam",
+            "name": "1008 Bhagavan Sri Adinath Digambar Jain Basadi, Vizhukkam",
+            "type": "Temple",
+            "description": "Digambar Jain temple located 40 kms from Salukkai."
+          },
+          {
+            "tirthId": "mel-chitamur-jin-kanchi",
+            "name": "Mel Chitamur (Jin Kanchi)",
+            "type": "Tirth",
+            "description": "The administrative center (Jin Kanchi) of the Tamil Jain community, 7 kms from Vizhukkam. It features a seven-storeyed Raja Gopuram, a 52-foot manastambha, and a 14-foot black idol of Parshvanatha."
+          },
+          {
+            "tirthId": "thirunathan-kundru-jain-hill-gingee",
+            "name": "Thirunathan Kundru Jain Hill, Gingee",
+            "type": "Temple",
+            "description": "An ancient Jain hill site near Mel Chitamur, 15 kms from Mel Chitamur."
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "Tamil Nadu",
+      "Arihantagiri",
+      "Arani",
+      "Kanchivaram",
+      "Ponnur Malai",
+      "Mel Chitamur",
+      "Gingee",
+      "Dharmshala",
+      "Bhojanshala",
+      "Jain Tirth"
+    ],
+    "startingCity": "Bangalore, Karnataka, India",
+    "endingCity": "Bangalore, Karnataka, India"
+  },
+  {
+    "id": "mysuru-shravanabelgola-kanakagiri-tour",
+    "title": "Mysuru, Shravanabelgola & Kanakagiri Tour",
+    "duration": "2 Days",
+    "states": [
+      "Karnataka"
+    ],
+    "author": "Souvik Khanra",
+    "authorInstagram": "https://www.instagram.com/_yehi_to_hai_",
+    "description": "A classic journey to Kanakagiri - the only sidhh kshetra of Karnataka, world-famous Gommateshwara statue and historic sites of Southern Karnataka.",
+    "days": [
+      {
+        "day": 1,
+        "stops": [
+          {
+            "tirthId": "shri-aadinath-digambar-jain-temple-srirangapatna",
+            "name": "Shri Aadinath Digambar Jain Temple, Srirangapatna",
+            "type": "Temple",
+            "description": "An ancient temple located 150 kms from Bangalore."
+          },
+          {
+            "tirthId": "shri-parshwanath-digambar-jain-temple-and-jain-boarding-dharmashala-mysuru",
+            "name": "Shri Parshwanath Digambar Jain Temple and Jain Boarding Dharmashala, Mysuru",
+            "type": "Temple",
+            "description": "Mysuru is just 11 kms from Srirangapatna. Visit the local temple and explore Mysuru palace."
+          },
+          {
+            "tirthId": "kanakagiri-sidhh-kshetra",
+            "name": "Kanakagiri Sidhh Kshetra",
+            "type": "Tirth",
+            "description": "It is the Samadhi place of Aacharya Pujyapad Swamy. The place also witnessed vihar of Lord Mahavirji. It is beautiful mountain of huge stones. The great Supratishth Mahamuni because omniscient and achieved salvation here. Inscription and caves related to last Shrutkewali Bhadrabahuji are found here. The hill top has shri vijay parshwanath idol and a miniature of shri sammed shikharji tirth. In the mid hill, there an idol of shri Bahubali Swamy. Note that you can also go to the hill via your car."
+          },
+          {
+            "tirthId": "gommatgiri",
+            "name": "Gommatgiri",
+            "type": "Tirth",
+            "description": "Small hillock with an ancient 16-feet statue of Bahubali, located 24 kms from Mysuru."
+          },
+          {
+            "tirthId": "shri-baahubali-theertha-kaaveri-dhaama-basadi-hosakote",
+            "name": "Shri Baahubali Theertha, Kaaveri Dhaama, (Basadi Hosakote)",
+            "type": "Tirth",
+            "description": "A peaceful temple and a nice viewpoint on the banks of the river Kaveri, located 40 kms from Gommatgiri."
+          },
+          {
+            "tirthId": "assam-bhavan-shravanabelgola",
+            "name": "Assam Bhavan, Shravanabelgola",
+            "type": "Dharmshala",
+            "description": "50 kms from Kaaveri Dhaam. Comfortable stay with AC rooms available. Can also go for 'Vidyanand Nilaya' for a cheaper stay or in case if this dharmshala is full. Bhojanshala is located near jain mutt temple."
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "stops": [
+          {
+            "tirthId": "chandragiri-hill-shravanabelgola",
+            "name": "Chandragiri Hill, Shravanabelgola",
+            "type": "Tirth",
+            "description": "Site of 15 ancient temples, the Samadhi cave of Acharya Bhadrabahu and charan of Muni Chandragupta."
+          },
+          {
+            "tirthId": "vindhyagiri-hill-shravanabelgola",
+            "name": "Vindhyagiri Hill, Shravanabelgola",
+            "type": "Tirth",
+            "description": "Home to the popular massive monolithic idol of Bahubali Swamy, built during the 10th century."
+          },
+          {
+            "tirthId": "jain-mutt-temple-shravanabelgola",
+            "name": "Jain Mutt Temple, Shravanabelgola",
+            "type": "Tirth",
+            "description": "Darshan, followed by lunch at the nearby Bhojanshala. There are 4-5 more temples in the town."
+          },
+          {
+            "tirthId": "jinnathpuram",
+            "name": "Jinnathpuram",
+            "type": "Tirth",
+            "description": "An ancient Jain pilgrimage site, just 2 kms from Shravanabelgola. 2 temples - Shri Parshwanath Basadi and Shri Shantinath Basadi are located here. "
+          },
+          {
+            "tirthId": "kambadahalli-jain-mutt",
+            "name": "Kambadahalli Jain Mutt",
+            "type": "Tirth",
+            "description": "Located 20 kms from Shravanabelgola, a 2000-year-old temple complex and gurukul run by the trust for young kids."
+          },
+          {
+            "tirthId": "shri-paras-dham-atishay-kshetra",
+            "name": "Shri Paras Dham Atishay Kshetra",
+            "type": "Tirth",
+            "description": "Located just 24 kms from Kambadahalli, on the way to bangalore."
+          },
+          {
+            "tirthId": "mandargiri-hill-tumkur",
+            "name": "Mandargiri Hill, Tumkur",
+            "type": "Tirth",
+            "description": "Located 90 kms from Paras Dham. Features a unique Samosharan temple and a scenic lake viewpoint on the hill (you can either climb or use your vehicle). On the base, there is a 21 feet monolithic idol of Shri Chandraprabhu Swamy and a pichhi shaped guru mandir."
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "Karnataka",
+      "Mysuru",
+      "Shravanabelgola",
+      "Gommatgiri",
+      "Bahubali",
+      "Mandargiri",
+      "Dharmshala",
+      "Bhojanshala"
+    ],
+    "startingCity": "Bangalore, Karnataka, India",
+    "endingCity": "Bangalore, Karnataka, India"
+  },
+  {
+    "id": "sapt-bahubali-vandana-and-mysore-darshan",
+    "title": "Sapt Bahubali Vandana and Mysore Darshan",
+    "duration": "6 Days",
+    "states": [
+      "Karnataka"
+    ],
+    "author": "Souvik Khanra",
+    "authorInstagram": "https://www.instagram.com/_yehi_to_hai_",
+    "description": "Vandana of the ancient 7 Bahubali monoliths - Shravanabelgola, Karkala, Vennoor, Gommatgiri, Dharmasthala, Kaaveri Dhaam and Kanakagiri. Also covers Mysuru and Kanakagiri - the only sidhh kshetra of Karnataka, the holy place where Acharya Shri Pujyapaad swami took samadhi.",
+    "days": [
+      {
+        "day": 1,
+        "stops": [
+          {
+            "tirthId": "mandargiri-hill-tumkur",
+            "name": "Mandargiri Hill, Tumkur",
+            "type": "Tirth",
+            "description": "Located 80 kms from Bangalore. Features a unique Samosharan temple and a scenic lake viewpoint on the hill (you can either climb or use your vehicle). On the base, there is a 21 feet monolithic idol of Shri Chandraprabhu Swamy and a pichhi shaped guru mandir."
+          },
+          {
+            "tirthId": "shri-paras-dham-atishay-kshetra",
+            "name": "Shri Paras Dham Atishay Kshetra",
+            "type": "Tirth",
+            "description": "Situated on the highway from bangalore to shravanabelgola."
+          },
+          {
+            "tirthId": "kambadahalli-jain-mutt",
+            "name": "Kambadahalli Jain Mutt",
+            "type": "Tirth",
+            "description": "A 2000-year-old temple complex along with a gurukul run by the trust for young kids."
+          },
+          {
+            "tirthId": "jinnathpuram",
+            "name": "Jinnathpuram",
+            "type": "Tirth",
+            "description": "An ancient Jain pilgrimage site, just 2 kms from Shravanabelgola. 2 temples - Shri Parshwanath Basadi and Shri Shantinath Basadi are located here."
+          },
+          {
+            "tirthId": "jain-mutt-temple",
+            "name": "Jain Mutt Temple",
+            "type": "Temple",
+            "description": "Darshan, followed by dinner at the nearby Bhojanshala. There are 4-5 more temples in the town."
+          },
+          {
+            "tirthId": "assam-bhavan-shravanabelgola",
+            "name": "Assam Bhavan, Shravanabelgola",
+            "type": "Dharmshala",
+            "description": "Comfortable stay with AC rooms available. Can also go for 'Vidyanand Nilaya' for a cheaper stay or in case if this dharmshala is full."
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "stops": [
+          {
+            "tirthId": "chandragiri-hill-shravanabelgola",
+            "name": "Chandragiri Hill, Shravanabelgola",
+            "type": "Tirth",
+            "description": "Site of 15 ancient temples, the Samadhi cave of Acharya Bhadrabahu and charan of Muni Chandragupta."
+          },
+          {
+            "tirthId": "vindhyagiri-hill-shravanabelgola",
+            "name": "Vindhyagiri Hill, Shravanabelgola",
+            "type": "Tirth",
+            "description": "Home to the popular massive monolithic idol of Bahubali Swamy, built during the 10th century."
+          },
+          {
+            "tirthId": "haalebeedu-shantinath-basadi",
+            "name": "Haalebeedu Shantinath Basadi",
+            "type": "Tirth",
+            "description": "Built in the 12th century during the Hoysala era, the complex features three main basadis (temples) dedicated to the Tirthankaras Parshvanatha, Shantinatha, and Adinatha."
+          },
+          {
+            "tirthId": "jainara-gutthi",
+            "name": "Jainara Gutthi Atishay Kshetra",
+            "type": "Tirth",
+            "description": "Known for many ancient idols discovered from the earth in the year 2021, under guidance of Muni Shri 108 Veer Sagar Ji Maharaj Dakshin."
+          },
+          {
+            "tirthId": "dharmasthala-bahubali",
+            "name": "Dharmasthala Bahubali",
+            "type": "Tirth",
+            "description": "Has a modern monolith of Bahubali Swamy with a dedicated Jain dining hall. There is another chandranath swamy jain temple in the town. Has night stay facilities."
+          }
+        ]
+      },
+      {
+        "day": 3,
+        "stops": [
+          {
+            "tirthId": "ratnatraya-basadi-atishay-kshetra",
+            "name": "Ratnatraya Basadi Atishay Kshetra",
+            "type": "Tirth",
+            "description": "Located only 23 kms from Dharmasthala, also has good night stay facilities."
+          },
+          {
+            "tirthId": "adinath-swamy-basadi-vennoor",
+            "name": "Adinath Swamy Basadi, Vennoor",
+            "type": "Temple",
+            "description": "Located within 1 km of the Vennoor Bahubali statue."
+          },
+          {
+            "tirthId": "vennoor-bahubali",
+            "name": "Vennoor Bahubali",
+            "type": "Tirth",
+            "description": "A historic monolithic statue of Bahubali Swamy, 20 kms from Moodbadri. There is another temple behind the Bahubali statue."
+          },
+          {
+            "tirthId": "karkala-bahubali",
+            "name": "Karkala Bahubali",
+            "type": "Tirth",
+            "description": "Located 45 kms from Ratnatraya Basadi, it houses an ancient monolith of Bahubali Swamy. Out of 23 temples in the town, 12 temples are ancient - Chaturmukha Basadi and Annekere Basadi (lake temple) being some of them. The Kshetra is about 1000 year old and famous for sculptures."
+          },
+          {
+            "tirthId": "chaturmukh-basadi-karkala",
+            "name": "Chaturmukh Basadi, Karkala",
+            "type": "Temple",
+            "description": "Unique four-faced architectural marvel of Karkala."
+          },
+          {
+            "tirthId": "saavira-kambada-basadi-moodbadri",
+            "name": "Saavira Kambada Basadi, Moodbadri",
+            "type": "Tirth",
+            "description": "Famous '1000-pillar temple' along with 17 other ancient temples (some temples are open only from 7 AM to 10 AM, so try to visit those next day morning), get map from the jain mathada basadi. If bhojanshala is closed for some reason, you can go to Arihanth Ahaar restaurant for jain food."
+          }
+        ]
+      },
+      {
+        "day": 4,
+        "stops": [
+          {
+            "tirthId": "varanga-lake-jain-temple",
+            "name": "Varanga Lake Jain Temple",
+            "type": "Temple",
+            "description": "A beautiful temple situated in the middle of a lake, 27 kms from Karkala. A serene 12th-century, four-faced (Chaturmukha) temple located in the middle of a 14-acre lake in Varanga village, Udupi district, Karnataka. Dedicated to Parshwanatha, this 850-year-old temple is accessed by a 100-meter boat ride, featuring intricate, star-shaped architecture surrounded by water lilies and lush nature."
+          },
+          {
+            "tirthId": "kundadri-shri-parshwanath-basadi",
+            "name": "Kundadri Shri Parshwanath Basadi",
+            "type": "Tirth",
+            "description": "Just 44 kms from Varanga, this place is known for being the tapasthali of Acharya Shri Kund Kund Swamy."
+          },
+          {
+            "tirthId": "jwalamalini-atishay-kshetra-n-r-pura",
+            "name": "Jwalamalini Atishay Kshetra, N R Pura",
+            "type": "Tirth",
+            "description": "Prominent temple dedicated to Yakshini Jwalamalini and Shri Chandraprabha Swamy, located 58 kms from Kundadri."
+          },
+          {
+            "tirthId": "humcha-jain-temple",
+            "name": "Humcha Jain Temple",
+            "type": "Tirth",
+            "description": "Major pilgrimage center for Padmavati Devi and Shri Parshwanath Bhagwan. Located 55 kms from Jwalamalini Atishay Kshetra."
+          }
+        ]
+      },
+      {
+        "day": 5,
+        "stops": [
+          {
+            "tirthId": "shri-baahubali-theertha-kaaveri-dhaama-basadi-hosakote",
+            "name": "Shri Baahubali Theertha, Kaaveri Dhaama, (Basadi Hosakote)",
+            "type": "Tirth",
+            "description": "A peaceful temple and a nice viewpoint on the banks of the river Kaveri, located 40 kms from Gommatgiri."
+          },
+          {
+            "tirthId": "gommatgiri",
+            "name": "Gommatgiri",
+            "type": "Tirth",
+            "description": "Small hillock with an ancient 16-feet statue of Bahubali, located 24 kms from Mysuru."
+          },
+          {
+            "tirthId": "kanakagiri-sidhh-kshetra",
+            "name": "Kanakagiri Sidhh Kshetra",
+            "type": "Tirth",
+            "description": "It is the Samadhi place of Aacharya Pujyapad Swamy. The place also witnessed vihar of Lord Mahavirji. It is beautiful mountain of huge stones. The great Supratishth Mahamuni because omniscient and achieved salvation here. Inscription and caves related to last Shrutkewali Bhadrabahuji are found here. The hill top has shri vijay parshwanath idol and a miniature of shri sammed shikharji tirth. In the mid hill, there an idol of shri Bahubali Swamy. Note that you can also go to the hill via your car."
+          }
+        ]
+      },
+      {
+        "day": 6,
+        "stops": [
+          {
+            "tirthId": "shri-parshwanath-digambar-jain-temple-and-jain-boarding-dharmashala-mysuru",
+            "name": "Shri Parshwanath Digambar Jain Temple and Jain Boarding Dharmashala, Mysuru",
+            "type": "Temple",
+            "description": "Visit the local temple and explore Mysuru palace."
+          },
+          {
+            "tirthId": "shri-aadinath-digambar-jain-temple-srirangapatna",
+            "name": "Shri Aadinath Digambar Jain Temple, Srirangapatna",
+            "type": "Temple",
+            "description": "An ancient temple located 150 kms from Bangalore."
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "Karnataka",
+      "Moodbadri",
+      "Vennoor",
+      "Dharmasthala",
+      "Karkala",
+      "Humcha",
+      "Bahubali",
+      "Mysuru",
+      "Kanakagiri",
+      "Gommatgiri",
+      "Jainar Gutthi",
+      "Haalebeedu",
+      "Dharmshala",
+      "Bhojanshala"
+    ],
+    "startingCity": "Bangalore, Karnataka, India",
+    "endingCity": "Bangalore, Karnataka, India"
+  },
+  {
+    "id": "jainbadri-moodbadri-vandana",
+    "title": "Jainbadri Moodbadri Vandana",
+    "duration": "4 Days",
+    "states": [
+      "Karnataka"
+    ],
+    "author": "Souvik Khanra",
+    "authorInstagram": "https://www.instagram.com/_yehi_to_hai_",
+    "description": "Vandana of the jainbadri (shravanabelgola) and moodbadri (jain kashi) atishay kshetras and the 4 ancient Bahubali monoliths - Shravanabelgola, Karkala, Vennoor and Dharmasthala. Also covers Kundadri - the tapasthali of acharya shri kund kund swamy.",
+    "days": [
+      {
+        "day": 1,
+        "stops": [
+          {
+            "tirthId": "chandragiri-hill-shravanabelgola",
+            "name": "Chandragiri Hill, Shravanabelgola",
+            "type": "Tirth",
+            "description": "Site of 15 ancient temples, the Samadhi cave of Acharya Bhadrabahu and charan of Muni Chandragupta."
+          },
+          {
+            "tirthId": "vindhyagiri-hill-shravanabelgola",
+            "name": "Vindhyagiri Hill, Shravanabelgola",
+            "type": "Tirth",
+            "description": "Home to the popular massive monolithic idol of Bahubali Swamy, built during the 10th century."
+          },
+          {
+            "tirthId": "jain-mutt-temple-shravanabelgola",
+            "name": "Jain Mutt Temple, Shravanabelgola",
+            "type": "Tirth",
+            "description": "Darshan, followed by lunch at the nearby Bhojanshala. There are 4-5 more temples in the town."
+          },
+          {
+            "tirthId": "haalebeedu-shantinath-basadi",
+            "name": "Haalebeedu Shantinath Basadi",
+            "type": "Tirth",
+            "description": "Built in the 12th century during the Hoysala era, the complex features three main basadis (temples) dedicated to the Tirthankaras Parshvanatha, Shantinatha, and Adinatha."
+          },
+          {
+            "tirthId": "jainara-gutthi",
+            "name": "Jainara Gutthi Atishay Kshetra",
+            "type": "Tirth",
+            "description": "Known for many ancient idols discovered from the earth in the year 2021, under guidance of Muni Shri 108 Veer Sagar Ji Maharaj Dakshin."
+          },
+          {
+            "tirthId": "dharmasthala-bahubali",
+            "name": "Dharmasthala Bahubali",
+            "type": "Tirth",
+            "description": "Has a modern monolith of Bahubali Swamy with a dedicated Jain dining hall. There is another chandranath swamy jain temple in the town. Has night stay facilities."
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "stops": [
+          {
+            "tirthId": "ratnatraya-basadi-atishay-kshetra",
+            "name": "Ratnatraya Basadi Atishay Kshetra",
+            "type": "Tirth",
+            "description": "Located only 23 kms from Dharmasthala, also has good night stay facilities."
+          },
+          {
+            "tirthId": "adinath-swamy-basadi-vennoor",
+            "name": "Adinath Swamy Basadi, Vennoor",
+            "type": "Temple",
+            "description": "Located within 1 km of the Vennoor Bahubali statue."
+          },
+          {
+            "tirthId": "vennoor-bahubali",
+            "name": "Vennoor Bahubali",
+            "type": "Tirth",
+            "description": "A historic monolithic statue of Bahubali Swamy, 20 kms from Moodbadri. There is another temple behind the Bahubali statue."
+          },
+          {
+            "tirthId": "karkala-bahubali",
+            "name": "Karkala Bahubali",
+            "type": "Tirth",
+            "description": "Located 45 kms from Ratnatraya Basadi, it houses an ancient monolith of Bahubali Swamy. Out of 23 temples in the town, 12 temples are ancient - Chaturmukha Basadi and Annekere Basadi (lake temple) being some of them. The Kshetra is about 1000 year old and famous for sculptures."
+          },
+          {
+            "tirthId": "chaturmukh-basadi-karkala",
+            "name": "Chaturmukh Basadi, Karkala",
+            "type": "Temple",
+            "description": "Unique four-faced architectural marvel of Karkala."
+          },
+          {
+            "tirthId": "saavira-kambada-basadi-moodbadri",
+            "name": "Saavira Kambada Basadi, Moodbadri",
+            "type": "Tirth",
+            "description": "Famous '1000-pillar temple' along with 17 other ancient temples (some temples are open only from 7 AM to 10 AM, so try to visit those next day morning), get map from the jain mathada basadi. If bhojanshala is closed for some reason, you can go to Arihanth Ahaar restaurant for jain food."
+          }
+        ]
+      },
+      {
+        "day": 3,
+        "stops": [
+          {
+            "tirthId": "varanga-lake-jain-temple",
+            "name": "Varanga Lake Jain Temple",
+            "type": "Temple",
+            "description": "A beautiful temple situated in the middle of a lake, 27 kms from Karkala. A serene 12th-century, four-faced (Chaturmukha) temple located in the middle of a 14-acre lake in Varanga village, Udupi district, Karnataka. Dedicated to Parshwanatha, this 850-year-old temple is accessed by a 100-meter boat ride, featuring intricate, star-shaped architecture surrounded by water lilies and lush nature."
+          },
+          {
+            "tirthId": "kundadri-shri-parshwanath-basadi",
+            "name": "Kundadri Shri Parshwanath Basadi",
+            "type": "Tirth",
+            "description": "Just 44 kms from Varanga, this place is known for being the tapasthali of Acharya Shri Kund Kund Swamy."
+          },
+          {
+            "tirthId": "jwalamalini-atishay-kshetra-n-r-pura",
+            "name": "Jwalamalini Atishay Kshetra, N R Pura",
+            "type": "Tirth",
+            "description": "Prominent temple dedicated to Yakshini Jwalamalini and Shri Chandraprabha Swamy, located 58 kms from Kundadri."
+          },
+          {
+            "tirthId": "humcha-jain-temple",
+            "name": "Humcha Jain Temple",
+            "type": "Tirth",
+            "description": "Major pilgrimage center for Padmavati Devi and Shri Parshwanath Bhagwan. Located 55 kms from Jwalamalini Atishay Kshetra."
+          }
+        ]
+      },
+      {
+        "day": 4,
+        "stops": [
+          {
+            "tirthId": "mandargiri-hill-tumkur",
+            "name": "Mandargiri Hill, Tumkur",
+            "type": "Tirth",
+            "description": "Located 80 kms from Bangalore. Features a unique Samosharan temple and a scenic lake viewpoint on the hill (you can either climb or use your vehicle). On the base, there is a 21 feet monolithic idol of Shri Chandraprabhu Swamy and a pichhi shaped guru mandir."
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "Karnataka",
+      "Moodbadri",
+      "Vennoor",
+      "Dharmasthala",
+      "Karkala",
+      "Humcha",
+      "Bahubali",
+      "Jainar Gutthi",
+      "Haalebeedu",
+      "Dharmshala",
+      "Bhojanshala"
+    ],
+    "startingCity": "Bangalore, Karnataka, India",
+    "endingCity": "Bangalore, Karnataka, India"
+  },
+  {
+    "id": "west-karnataka-coastal-pilgrimage",
+    "title": "West Karnataka Coastal Pilgrimage",
+    "duration": "2 Days",
+    "states": [
+      "Karnataka"
+    ],
+    "author": "Souvik Khanra",
+    "authorInstagram": "https://www.instagram.com/_yehi_to_hai_",
+    "description": "A journey through the coastal Jain belt featuring several Bahubali monoliths. The pilgrimage starts from Mangalore and ends at Humcha (near Arasalu station).",
+    "days": [
+      {
+        "day": 1,
+        "stops": [
+          {
+            "tirthId": "shri-digambar-jain-temple-mangaluru",
+            "name": "Shri Digambar Jain Temple, Mangaluru",
+            "type": "Temple",
+            "description": "Ancient temple located near Mangalore Central station."
+          },
+          {
+            "tirthId": "saavira-kambada-basadi-moodbadri",
+            "name": "Saavira Kambada Basadi, Moodbadri",
+            "type": "Tirth",
+            "description": "Famous '1000-pillar temple' along with 17 other ancient temples (most temples are open only from 7 AM to 10 AM), get map from the jain mathada basadi. If bhojanshala is closed for some reason, you can go to Arihanth Ahaar restaurant for jain food."
+          },
+          {
+            "tirthId": "vennoor-bahubali",
+            "name": "Vennoor Bahubali",
+            "type": "Tirth",
+            "description": "A historic monolithic statue of Bahubali Swamy, 20 kms from Moodbadri. There is another temple behind the Bahubali statue."
+          },
+          {
+            "tirthId": "adinath-swamy-basadi-vennoor",
+            "name": "Adinath Swamy Basadi, Vennoor",
+            "type": "Temple",
+            "description": "Located within 1 km of the Vennoor Bahubali statue."
+          },
+          {
+            "tirthId": "dharmasthala-bahubali",
+            "name": "Dharmasthala Bahubali",
+            "type": "Tirth",
+            "description": "Located 32 kms from Vennoor, has a modern monolith of Bahubali Swamy with a dedicated Jain dining hall. There is another jain temple in the town."
+          },
+          {
+            "tirthId": "ratnatraya-basadi-atishay-kshetra",
+            "name": "Ratnatraya Basadi Atishay Kshetra",
+            "type": "Tirth",
+            "description": "Located 23 kms from Dharmasthala, a sacred site offering night stay facilities."
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "stops": [
+          {
+            "tirthId": "karkala-bahubali",
+            "name": "Karkala Bahubali",
+            "type": "Tirth",
+            "description": "Located 45 kms from Ratnatraya Basadi, it houses an ancient monolith of Bahubali Swamy. Out of 23 temples in the town, 12 temples are ancient - Chaturmukha Basadi and Annekere Basadi (lake temple) being some of them. The Kshetra is about 1000 year old and famous for sculptures."
+          },
+          {
+            "tirthId": "chaturmukh-basadi-karkala",
+            "name": "Chaturmukh Basadi, Karkala",
+            "type": "Temple",
+            "description": "Unique four-faced architectural marvel of Karkala."
+          },
+          {
+            "tirthId": "varanga-lake-jain-temple",
+            "name": "Varanga Lake Jain Temple",
+            "type": "Temple",
+            "description": "A beautiful temple situated in the middle of a lake, 27 kms from Karkala. A serene 12th-century, four-faced (Chaturmukha) temple located in the middle of a 14-acre lake in Varanga village, Udupi district, Karnataka. Dedicated to Parshwanatha, this 850-year-old temple is accessed by a 100-meter boat ride, featuring intricate, star-shaped architecture surrounded by water lilies and lush nature."
+          },
+          {
+            "tirthId": "kundadri-shri-parshwanath-basadi",
+            "name": "Kundadri Shri Parshwanath Basadi",
+            "type": "Tirth",
+            "description": "Just 44 kms from Varanga, this place is known for being the tapasthali of Acharya Shri Kund Kund Swamy."
+          },
+          {
+            "tirthId": "jwalamalini-atishay-kshetra-n-r-pura",
+            "name": "Jwalamalini Atishay Kshetra, N R Pura",
+            "type": "Tirth",
+            "description": "Prominent temple dedicated to Yakshini Jwalamalini and Shri Chandraprabha Swamy, located 58 kms from Kundadri."
+          },
+          {
+            "tirthId": "humcha-jain-temple",
+            "name": "Humcha Jain Temple",
+            "type": "Tirth",
+            "description": "Major pilgrimage center for Padmavati Devi and Shri Parshwanath Bhagwan. Located 55 kms from Jwalamalini Atishay Kshetra."
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "Karnataka",
+      "Mangalore",
+      "Moodbadri",
+      "Vennoor",
+      "Dharmasthala",
+      "Karkala",
+      "Humcha",
+      "Bahubali",
+      "Dharmshala",
+      "Bhojanshala"
+    ],
+    "startingCity": "Mangalore, Karnataka, India",
+    "endingCity": "Arasalu, Karnataka, India"
+  },
+  {
+    "id": "bundelkhand-yatra-nagpur-to-jabalpur-3d",
+    "title": "Bundelkhand Digambar Jain Yatra",
+    "duration": "3 Days",
+    "states": [
+      "Madhya Pradesh",
+      "Maharashtra"
+    ],
+    "author": "Souvik Khanra",
+    "authorInstagram": "https://www.instagram.com/_yehi_to_hai_",
+    "description": "A deep exploration of Jainism in Madhya Pradesh, including the magnificent Kundalpur Bade Baba and Ramtek. The pilgrimage starts from Dongargarh and ends at Jabalpur",
+    "days": [
+      {
+        "day": 1,
+        "stops": [
+          {
+            "tirthId": "chandragiri-tirth-dongargarh",
+            "name": "Chandragiri Tirth, Dongargarh",
+            "type": "Tirth",
+            "description": "Samadhi Sthali of Acharya Shri Vidhya Sagar Ji Maharaj."
+          },
+          {
+            "tirthId": "ramtek-jain-temples",
+            "name": "Ramtek Jain Temples",
+            "type": "Tirth",
+            "description": "With moolnayak as golden colored idol of Shri Shantinath Bhagwan in kayotsarga posture, it is located 50 kms from Nagpur (buses and autos available from Nagpur). There are also 8 other temples in the complex. The place also has centre for Pratibhasthali (gurukul for jain girls) and Hathkargha."
+          },
+          {
+            "tirthId": "seoni-bada-mandir",
+            "name": "Seoni Bada Mandir",
+            "type": "Temple",
+            "description": "Historical temple in Seoni, 80 kms from Ramtek."
+          },
+          {
+            "tirthId": "chhapara-jain-mandir",
+            "name": "Chhapara Jain Mandir",
+            "type": "Temple",
+            "description": "Historical temple in Chhapara, 36 kms from Seoni."
+          },
+          {
+            "tirthId": "lakhnadaun-jain-mandir-samnapur-jinalay",
+            "name": "Lakhnadaun Jain Mandir (Samnapur Jinalay)",
+            "type": "Temple",
+            "description": "26 kms from Chhapara."
+          },
+          {
+            "tirthId": "pisanhari-ki-madhiya-ji-jabalpur",
+            "name": "Pisanhari ki Madhiya Ji, Jabalpur",
+            "type": "Tirth",
+            "description": "80 kms from Lakhnadaun. Scenic temples, both on hill and in the campus, with full stay and food facilities. "
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "stops": [
+          {
+            "tirthId": "shasanoday-tirth-hanumantal-jabalpur",
+            "name": "Shasanoday Tirth, Hanumantal, Jabalpur",
+            "type": "Tirth",
+            "description": "The most ancient idol of Shri Aadinath Bhagwan. For lunch, you can either visit Madhiya Ji Bhojanshala, or try Padharo Sa Jain Restaurant."
+          },
+          {
+            "tirthId": "koni-ji-atishay-kshetra-paatan",
+            "name": "Koni Ji Atishay Kshetra, Paatan",
+            "type": "Tirth",
+            "description": "Located 38 kms from Jabalpur. Main idol is of vighnahar Chintamani Parasnathaji and 9 other temples."
+          },
+          {
+            "tirthId": "beena-baarah-atishay-kshetra",
+            "name": "Beena Baarah Atishay Kshetra",
+            "type": "Tirth",
+            "description": "Located 80 kms from Koni Ji. Moolnayak bhagwan is Shri Shantinath Ji. Significant pilgrimage site with many ancient idols located in a large temple complex. The place has a large goshala and a centre for hathkargha."
+          },
+          {
+            "tirthId": "patnaganj-jinalay-rehli",
+            "name": "Patnaganj Jinalay, Rehli",
+            "type": "Temple",
+            "description": "Located 38 kms from Beena Baarah. Moolnayak is Shri Mahavir Bhagwan."
+          },
+          {
+            "tirthId": "pateriya-ji-atishay-kshetra-garhakota",
+            "name": "Pateriya Ji Atishay Kshetra, Garhakota",
+            "type": "Tirth",
+            "description": "Located 25 kms from Rehli. Moolnayak bhagwan is Shri Parshwanath Ji."
+          },
+          {
+            "tirthId": "shri-bade-baba-kundalpur",
+            "name": "Shri Bade Baba, Kundalpur",
+            "type": "Tirth",
+            "description": "Located 70 kms from Garhakota. The massive idol of Adinath Bhagwan (Bade Baba) and 63 other temples located on the hill. This place is a Sidhh Kshetra, where shridhar kevali attained moksha. You can do parvat vandana next morning."
+          }
+        ]
+      },
+      {
+        "day": 3,
+        "stops": [
+          {
+            "tirthId": "kundalpur-bade-baba-parvat",
+            "name": "Kundalpur Bade Baba Parvat",
+            "type": "Tirth",
+            "description": "Darshan of the various temples on the Kundalpur hills."
+          },
+          {
+            "tirthId": "chetanoday-tirth-katni",
+            "name": "Chetanoday Tirth, Katni",
+            "type": "Tirth",
+            "description": "Located 90 kms from Kundalpur Bade Baba."
+          },
+          {
+            "tirthId": "shri-parshwanath-jinalay-bilhari",
+            "name": "Shri Parshwanath Jinalay, Bilhari",
+            "type": "Temple",
+            "description": "Located 13 kms from Katni."
+          },
+          {
+            "tirthId": "bahoriband-atishay-kshetra",
+            "name": "Bahoriband Atishay Kshetra",
+            "type": "Tirth",
+            "description": "Located 33 kms from Bilhari, this place has a large Shantinath idol."
+          },
+          {
+            "tirthId": "sammed-giri-tirth-gosalpur",
+            "name": "Sammed Giri Tirth, Gosalpur",
+            "type": "Tirth",
+            "description": "Located 40 kms from Bahoriband."
+          },
+          {
+            "tirthId": "panagar-atishay-kshetra",
+            "name": "Panagar Atishay Kshetra",
+            "type": "Temple",
+            "description": "Located 18 kms from Gosalpur and 20 kms from Jabalpur."
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "Madhya Pradesh",
+      "Bundelkhand",
+      "Kundalpur",
+      "Bade Baba",
+      "Ramtek",
+      "Jabalpur",
+      "Pisanhari ki Madhiya",
+      "Dharmshala",
+      "Bhojanshala"
+    ],
+    "startingCity": "Dongargarh",
+    "endingCity": "Jabalpur"
+  },
+  {
+    "id": "mandargiri-shravanabelgola-circuit",
+    "title": "Mandargiri & Shravanabelgola Circuit",
+    "duration": "2 Days",
+    "states": [
+      "Karnataka"
+    ],
+    "author": "Souvik Khanra",
+    "authorInstagram": "https://www.instagram.com/_yehi_to_hai_",
+    "description": "A relaxed 2-day trip highlighting Mandargiri architecture and Shravanabelgola.",
+    "days": [
+      {
+        "day": 1,
+        "stops": [
+          {
+            "tirthId": "mandargiri-hill-tumkur",
+            "name": "Mandargiri Hill, Tumkur",
+            "type": "Tirth",
+            "description": "Located 80 kms from Bangalore. Features a unique Samosharan temple and a scenic lake viewpoint on the hill (you can either climb or use your vehicle). On the base, there is a 21 feet monolithic idol of Shri Chandraprabhu Swamy and a pichhi shaped guru mandir."
+          },
+          {
+            "tirthId": "assam-bhavan-shravanabelgola",
+            "name": "Assam Bhavan, Shravanabelgola",
+            "type": "Dharmshala",
+            "description": "120 kms from Mandargiri. Comfortable stay with AC rooms available. Can also go for 'Vidyanand Nilaya' for a cheaper stay or in case if this dharmshala is full. Bhojanshala is located near jain mutt temple."
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "stops": [
+          {
+            "tirthId": "chandragiri-hill-shravanabelgola",
+            "name": "Chandragiri Hill, Shravanabelgola",
+            "type": "Tirth",
+            "description": "Site of 15 ancient temples, the Samadhi cave of Acharya Bhadrabahu and charan of Muni Chandragupta."
+          },
+          {
+            "tirthId": "vindhyagiri-hill-shravanabelgola",
+            "name": "Vindhyagiri Hill, Shravanabelgola",
+            "type": "Tirth",
+            "description": "Home to the popular massive monolithic idol of Bahubali Swamy, built during the 10th century."
+          },
+          {
+            "tirthId": "jain-mutt-temple",
+            "name": "Jain Mutt Temple",
+            "type": "Temple",
+            "description": "Darshan, followed by lunch at the nearby Bhojanshala. There are 4-5 more temples in the town."
+          },
+          {
+            "tirthId": "jinnathpuram",
+            "name": "Jinnathpuram",
+            "type": "Tirth",
+            "description": "An ancient Jain pilgrimage site, just 2 kms from Shravanabelgola. 2 temples - Shri Parshwanath Basadi and Shri Shantinath Basadi are located here."
+          },
+          {
+            "tirthId": "kambadahalli-jain-mutt",
+            "name": "Kambadahalli Jain Mutt",
+            "type": "Tirth",
+            "description": "Located 20 kms from Shravanabelgola, a 2000-year-old temple complex and gurukul run by the trust for young kids."
+          },
+          {
+            "tirthId": "shri-paras-dham-atishay-kshetra",
+            "name": "Shri Paras Dham Atishay Kshetra",
+            "type": "Tirth",
+            "description": "Located just 24 kms from Kambadahalli, on the way to bangalore."
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "Karnataka",
+      "Mandargiri",
+      "Shravanabelgola",
+      "Bahubali",
+      "Jain Mutt",
+      "Dharmshala",
+      "Bhojanshala"
+    ],
+    "startingCity": "Bangalore, Karnataka, India",
+    "endingCity": "Bangalore, Karnataka, India"
+  },
+  {
+    "id": "hyderabad-kulcharam-pilgrimage",
+    "title": "Hyderabad & Kulcharam Pilgrimage",
+    "duration": "1 Day",
+    "states": [
+      "Telangana"
+    ],
+    "author": "Souvik Khanra",
+    "authorInstagram": "https://www.instagram.com/_yehi_to_hai_",
+    "description": "An exploration of ancient and historic Jain temples in the Hyderabad region.",
+    "days": [
+      {
+        "day": 1,
+        "stops": [
+          {
+            "tirthId": "aghapura-jain-temple-hyderabad",
+            "name": "Aghapura Jain Temple, Hyderabad",
+            "type": "Temple",
+            "description": "Houses a 4th-era idol of Shri Chandraprabhu Bhagwan."
+          },
+          {
+            "tirthId": "shri-kalikund-parshwanath-hathnoora",
+            "name": "Shri Kalikund Parshwanath, Hathnoora",
+            "type": "Temple",
+            "description": "72 kms from Hyderabad. An 800-year-old temple. The ancient idol was found from a local pond."
+          },
+          {
+            "tirthId": "jogipet-jain-temple",
+            "name": "Jogipet Jain Temple",
+            "type": "Temple",
+            "description": "Located 30 kms from Hathnoora, this is a 150 years old temple."
+          },
+          {
+            "tirthId": "shri-vighnahar-parshwanath-kulcharam",
+            "name": "Shri Vighnahar Parshwanath, Kulcharam",
+            "type": "Tirth",
+            "description": "25 kms from Jogipet, this significant Atishay Kshetra features a 9th-century, 11-foot-3-inch black stone idol of Bhagwan Parshvanath in a standing posture."
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "Telangana",
+      "Hyderabad",
+      "Hathnoora",
+      "Kulcharam",
+      "Aghapura",
+      "Dharmshala",
+      "Bhojanshala"
+    ],
+    "endingCity": "Bangalore, Karnataka, India"
+  },
+  {
+    "id": "bangalore-to-hyderabad-heritage-trail",
+    "title": "Bangalore to Hyderabad Heritage Trail",
+    "duration": "1 Day",
+    "states": [
+      "Karnataka",
+      "Andhra Pradesh",
+      "Telangana"
+    ],
+    "author": "Souvik Khanra",
+    "authorInstagram": "https://www.instagram.com/_yehi_to_hai_",
+    "description": "A cross-state journey to the birthplace of the legendary Acharya Kunda Kunda.",
+    "days": [
+      {
+        "day": 1,
+        "stops": [
+          {
+            "tirthId": "penukonda-jain-temples",
+            "name": "Penukonda Jain Temples",
+            "type": "Temple",
+            "description": "150 kms from bangalore, penukonda features three significant ancient Jain temples - the Pachhe Parshwanath temple being one of them famous for green stone idol of Shree Parshwanath Bhagwan."
+          },
+          {
+            "tirthId": "konda-kunda-konakondla",
+            "name": "Konda Kunda, Konakondla",
+            "type": "Tirth",
+            "description": "140 kms from Penukonda, this is the sacred birthplace of Acharya Kunda Kunda. Also features a 1,700-year-old rock carving depicting the ancient “Jambudweep”, a cosmic map of the Jain universe. You can catch train to Hyderabad from Guntakal railway station, which is 6 kms from here or drive to Hyderabad (340 kms)."
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "Karnataka",
+      "Andhra Pradesh",
+      "Telangana",
+      "Penukonda",
+      "Konakondla",
+      "Acharya Kunda Kunda",
+      "Dharmshala",
+      "Bhojanshala"
+    ],
+    "startingCity": "Bangalore, Karnataka, India",
+    "endingCity": "Bangalore, Karnataka, India"
+  },
+  {
+    "id": "belagavi-district-dev-darshan",
+    "title": "Belagavi (Belgaum) District Dev Darshan",
+    "duration": "2 Days",
+    "states": [
+      "Karnataka"
+    ],
+    "author": "Souvik Khanra",
+    "authorInstagram": "https://www.instagram.com/_yehi_to_hai_",
+    "description": "Complete tirth darshan of Belagavi district, featuring ancient Ratta dynasty temples, sacred Acharya birthplaces, and unique cave temples.",
+    "days": [
+      {
+        "day": 1,
+        "stops": [
+          {
+            "tirthId": "belagavi-kamal-basadi",
+            "name": "Belagavi Kamal Basadi",
+            "type": "Temple",
+            "description": "Located inside Belgaum Fort in city of Belgaum, the Kamal Basadi derives its name from the lotus carvings extending from the dome of the centre roof. The lotus has 72 petals believed to represent 24 tirthankaras of past, present and future. Built by Birchiraja of ratta dynasty in 1204 AD."
+          },
+          {
+            "tirthId": "sankeshwar-shri-parshwanath-jain-temple",
+            "name": "Sankeshwar Shri Parshwanath Jain Temple",
+            "type": "Temple",
+            "description": "Beautiful Ratta dynasty built jain temple"
+          },
+          {
+            "tirthId": "shri-kshetra-nischay-giri",
+            "name": "Shri Kshetra Nischay Giri",
+            "type": "Tirth",
+            "description": "A prominent pilgrimage site located on a hill in Kanagala, near Nipani and Tavandi in the Belgaum (Belagavi) district of Karnataka."
+          },
+          {
+            "tirthId": "atishay-kshetra-stavnidhi",
+            "name": "Atishay Kshetra Stavnidhi",
+            "type": "Tirth",
+            "description": "Atishay Kshetra stavnidhi has beautiful nav khand parshwanath bhagwan jain temple"
+          },
+          {
+            "tirthId": "shree-kshetra-shanti-giri-kothali",
+            "name": "Shree Kshetra Shanti Giri Kothali",
+            "type": "Tirth",
+            "description": "Birthplace of Acharya Deshabhushan ji."
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "stops": [
+          {
+            "tirthId": "acharya-shri-shanti-sagar-janm-bhoomi-bhoj",
+            "name": "Acharya Shri Shanti Sagar Janm Bhoomi, Bhoj",
+            "type": "Tirth",
+            "description": "Acharya Shri Shanti sagar janm bhoomi 2 jain temples and teerth"
+          },
+          {
+            "tirthId": "acharya-shri-vidhya-sagar-janm-bhoomi-sadalga",
+            "name": "Acharya Shri Vidhya Sagar Janm Bhoomi, Sadalga",
+            "type": "Temple",
+            "description": "There are 6 jain temples in village acharya Shri vidhya sagar Maharaj ji janm bhoomi"
+          },
+          {
+            "tirthId": "kagwad-leni-temple",
+            "name": "Kagwad Leni Temple",
+            "type": "Tirth",
+            "description": "2 floor underground jain temple"
+          },
+          {
+            "tirthId": "shedbal-ashram",
+            "name": "Shedbal Ashram",
+            "type": "Tirth",
+            "description": "Samadhi sthali of Acharya Shri Subal Sagar Maharaj."
+          },
+          {
+            "tirthId": "ugar-padmavati-atishya-kshetra",
+            "name": "Ugar Padmavati Atishya Kshetra",
+            "type": "Temple",
+            "description": "Beautiful atishay parshwanath jain temple with padmavati mata. Nearest railway stations are Ugar and Miraj."
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "Karnataka",
+      "Belagavi",
+      "Kamal Basadi",
+      "Sankeshwar",
+      "Stavnidhi",
+      "Kothali",
+      "Bhoj",
+      "Sadalga",
+      "Shedbal",
+      "Ugar",
+      "Jain Tirth"
+    ],
+    "startingCity": "Belgaum, Karnataka, India",
+    "endingCity": "Belgaum, Karnataka, India"
+  },
+  {
+    "id": "malenadu-jain-teerth-kshetra-darshan",
+    "title": "Malenadu Jain Tirth Darshan",
+    "duration": "3 Days",
+    "states": [
+      "Karnataka"
+    ],
+    "author": "Souvik Khanra",
+    "authorInstagram": "https://www.instagram.com/_yehi_to_hai_",
+    "description": "Explore Malenadu's heart, featuring India's highest waterfalls, Acharya Kundakunda's meditation sites, and the Pepper Queen's legacy.",
+    "days": [
+      {
+        "day": 1,
+        "stops": [
+          {
+            "tirthId": "hubballi-gabbur-shwetambar-jain-temple",
+            "name": "Hubballi Gabbur Shwetambar Jain Temple",
+            "type": "Tirth",
+            "description": "A prominent Shwetambar center. The Shankheshwar Parshva Padmalayam offers excellent boarding and Bhojanshala facilities."
+          },
+          {
+            "tirthId": "navagraha-teerth-kshetra-varur",
+            "name": "Navagraha Teerth Kshetra, Varur",
+            "type": "Tirth",
+            "description": "Features a majestic 61-foot monolithic statue of Shri 1008 Bhagwan Parshwanath, surrounded by smaller statues of the other 8 Graha-related Tirthankaras on a 'Meru Parvat' structure."
+          },
+          {
+            "tirthId": "adinath-shantinath-jain-temple-tadas",
+            "name": "Adinath Shantinath Jain Temple, Tadas",
+            "type": "Temple",
+            "description": "Ancient and serene temples built with intricate stone carvings, reflecting the region's historical Jain roots."
+          },
+          {
+            "tirthId": "acharya-shri-punyasagar-maharaj-janm-bhoomi-artal",
+            "name": "Acharya Shri Punyasagar Maharaj Janm Bhoomi, Artal",
+            "type": "Temple",
+            "description": "Sacred Janm Bhoomi of the revered Digambara monk Acharya Shri Punyasagar Maharaj."
+          },
+          {
+            "tirthId": "acharya-pujyapad-swami-upsarg-sthali-banavasi",
+            "name": "Acharya Pujyapad Swami Upsarg Sthali, Banavasi",
+            "type": "Temple",
+            "description": "The site where the legendary grammarian Acharya Pujyapad Swami is said to have written the 'Shantyastak Stotra'. Legend says he regained his lost eyesight here after composing this stotra."
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "stops": [
+          {
+            "tirthId": "jog-falls",
+            "name": "Jog Falls",
+            "type": "Tourist-Attraction",
+            "description": "India's highest untiered waterfall (Niagara Falls of India), formed by the Sharavathi River."
+          },
+          {
+            "tirthId": "shri-atishay-kshetra-vadanbailu-padmavati",
+            "name": "Shri Atishay Kshetra Vadanbailu Padmavati",
+            "type": "Tirth",
+            "description": "A unique Tirth where the 'Chaturmukha Padmavathi' idol is enshrined within a live anthill in the dense forests of the Western Ghats."
+          },
+          {
+            "tirthId": "chaturmukha-basadi-gerusoppa",
+            "name": "Chaturmukha Basadi, Gerusoppa",
+            "type": "Tirth",
+            "description": "Capital of the famous 'Pepper Queen' Rani Chennabhairadevi. The cross-shaped Chaturmukha Basadi is an ASI protected monument with four entrances, each facing a Jina."
+          },
+          {
+            "tirthId": "muni-shri-payasagar-maharaj-janm-bhoomi-halsasi",
+            "name": "Muni Shri Payasagar Maharaj Janm Bhoomi, Halsasi",
+            "type": "Temple",
+            "description": "Birthplace of Muni Shri Payasagar Maharaj, set in a tranquil rural setting."
+          },
+          {
+            "tirthId": "koduru-jain-temple",
+            "name": "Koduru Jain Temple",
+            "type": "Temple",
+            "description": "A peaceful village temple catering to the local Jain households."
+          },
+          {
+            "tirthId": "muni-shri-viditsagar-maharaj-janm-bhoomi-harige",
+            "name": "Muni Shri Viditsagar Maharaj Janm Bhoomi, Harige",
+            "type": "Temple",
+            "description": "The sacred birthplace of Muni Shri Viditsagar Maharaj."
+          }
+        ]
+      },
+      {
+        "day": 3,
+        "stops": [
+          {
+            "tirthId": "humcha-huncha-jain-mutt",
+            "name": "Humcha (Huncha) Jain Mutt",
+            "type": "Tirth",
+            "description": "The world-famous seat of Devi Padmavati. Known for the ancient Lakki tree and the historic Panchakuta Basadi."
+          },
+          {
+            "tirthId": "kundadri-hill",
+            "name": "Kundadri Hill",
+            "type": "Tirth",
+            "description": "The meditation grounds (Taposthali) of the legendary Acharya Kundakunda. Features a 17th-century Parshwanath Basadi with breathtaking views of the Shimoga forest."
+          },
+          {
+            "tirthId": "nr-pura-atishay-kshetra",
+            "name": "NR Pura Atishay Kshetra",
+            "type": "Tirth",
+            "description": "A significant atishay kshetra dedicated to Jwalamalini Devi, attracting devotees from across the state."
+          },
+          {
+            "tirthId": "maddagadde-bird-sanctuary",
+            "name": "Maddagadde Bird Sanctuary",
+            "type": "Tourist-Attraction",
+            "description": "An island bird sanctuary in the middle of the Tunga River, perfect for nature enthusiasts."
+          },
+          {
+            "tirthId": "sakkrebayel-elephant-camp",
+            "name": "Sakkrebayel Elephant Camp",
+            "type": "Tourist-Attraction",
+            "description": "A popular camp where elephants used in the Mysuru Dasara are fed and bathed. Visitors can interact with the gentle giants."
+          },
+          {
+            "tirthId": "shivamogga-railway-station",
+            "name": "Shivamogga Railway Station",
+            "type": "Travel",
+            "description": "Departure point from the Malenadu region."
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "Karnataka",
+      "Malenadu",
+      "Hubballi",
+      "Varur",
+      "Banavasi",
+      "Jog Falls",
+      "Vadanbailu",
+      "Gerusoppa",
+      "Humcha",
+      "Kundadri",
+      "NR Pura",
+      "Shimoga",
+      "Jain Tirth"
+    ],
+    "startingCity": "Hubbali, Karnataka, India",
+    "endingCity": "Hubbali, Karnataka, India"
+  },
+  {
+    "id": "shikharji-panch-teerth-jain-yatra",
+    "title": "Shikharji & Panch Teerth Yatra",
+    "duration": "5 Days",
+    "states": [
+      "Jharkhand",
+      "Bihar"
+    ],
+    "author": "Souvik Khanra",
+    "authorInstagram": "https://www.instagram.com/_yehi_to_hai_",
+    "description": "The ultimate pilgrimage covering Sammed Shikharji (Nirvan Bhumi of 20 Tirthankaras), the five sidhh khetras and the birthplaces of Bhagwan Mahavir and Vasupujya Swami.",
+    "days": [
+      {
+        "day": 1,
+        "stops": [
+          {
+            "tirthId": "madhuban-shikharji-base",
+            "name": "Madhuban (Shikharji Base)",
+            "type": "Tirth",
+            "description": "The base camp for Shikharji pilgrimage. Madhuban is home to dozens of beautiful Shwetambar and Digambar Kothis/Dharmshalas. You can do darshan of all the base temples in Madhuban itself. Note: Deoghar (DGH) is the nearest airport and Parasnath (PNME) is the nearest railway station."
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "stops": [
+          {
+            "tirthId": "sammed-shikharji-parvat-vandana",
+            "name": "Sammed Shikharji Parvat Vandana",
+            "type": "Tirth",
+            "description": "The holiest Jain Tirth. A 27 km trek to do vandana of the 25 'Tonks' where 20 out of 24 Tirthankaras attained Nirvana. Start early (2-3 AM) for the vandana."
+          }
+        ]
+      },
+      {
+        "day": 3,
+        "stops": [
+          {
+            "tirthId": "palganj-prachin-digambar-jain-mandir",
+            "name": "Palganj Prachin Digambar Jain Mandir",
+            "type": "Temple",
+            "description": "An ancient atishay kshetra with a 2500-year-old idol of Bhagwan Parshwanath. Historically known as the original 'Taleti' or base of Shikharji."
+          },
+          {
+            "tirthId": "mandargiri-hill-nirvan-bhoomi-of-vasupujya-swami",
+            "name": "Mandargiri Hill, Nirvan Bhoomi of Vasupujya Swami",
+            "type": "Tirth",
+            "description": "The only place associated with all five Kalyanakas — Garbha, Janma, Tapa, Gyan, and Moksha — of 12th tirthankar, Bhagwan Vasupujya. The site is the tap, kevalgyan, and moksha sthali of Vasupujya Swami. Also has ropeway to the top."
+          },
+          {
+            "tirthId": "mandargiri-base-temple",
+            "name": "Mandargiri Base Temple",
+            "type": "Tirth",
+            "description": "Ancient temple of vasupujya swami, located near the railway station."
+          },
+          {
+            "tirthId": "champapuri-bhagalpur",
+            "name": "Champapuri, Bhagalpur",
+            "type": "Tirth",
+            "description": "The garbha and janma sthal of Vasupujya Swami. Main 2 Kothis on the opposite sides of the road (19 Temples in Terahpanthi Kothi and 35 Vedis in Bispanthi Kothi)."
+          }
+        ]
+      },
+      {
+        "day": 4,
+        "stops": [
+          {
+            "tirthId": "kundalpur-nalanda-digambar-jain-mandir",
+            "name": "Kundalpur (Nalanda) Digambar Jain Mandir",
+            "type": "Tirth",
+            "description": "The sacred Janm Bhoomi (birthplace) of Bhagwan Mahavir Swami. There are 2 Kothis opposite to each other."
+          },
+          {
+            "tirthId": "pavapuri-jal-mandir",
+            "name": "Pavapuri Jal Mandir",
+            "type": "Tirth",
+            "description": "The Moksh Bhoomi of Bhagwan Mahavir. The white marble temple is situated in the middle of a large lotus pond, marking the spot of his nirvana. There are 3 other temples in pavapuri."
+          },
+          {
+            "tirthId": "gunavaji-siddha-kshetra-nawada",
+            "name": "Gunavaji Siddha Kshetra, Nawada",
+            "type": "Tirth",
+            "description": "The Moksh Bhoomi of Gautam Ganadhar."
+          },
+          {
+            "tirthId": "digambar-jain-dharmshala-rajgir",
+            "name": "Digambar Jain Dharmshala, Rajgir",
+            "type": "Tirth",
+            "description": "Night stay and Bhojan available. Nearby is Shri Mahavir Swami Temple."
+          }
+        ]
+      },
+      {
+        "day": 5,
+        "stops": [
+          {
+            "tirthId": "bhagwaan-munisuvratnath-swami-janm-bhoomi-rajgir",
+            "name": "Bhagwaan Munisuvratnath Swami Janm Bhoomi, Rajgir",
+            "type": "Tirth",
+            "description": "Ancient temple of Muni Suvratnath Swami, believed to be his birthplace."
+          },
+          {
+            "tirthId": "parvat-vandana-rajgir",
+            "name": "Parvat Vandana, Rajgir",
+            "type": "Tirth",
+            "description": "You will need to do tanga for the parvat vandana. Do darshan at the five hills of Rajgir - Many munis (sky clad saints) attained salvation from the mountains present here namely Vaibhargiri, Vipulachal, Ratnagiri, Udaygiri, and Sonagiri. Vipulachal is the site of Bhagwan Mahavir's first 'Divya Dhwani' after attaining Kevalgyan."
+          },
+          {
+            "tirthId": "veerayatan-jain-museum-rajgir",
+            "name": "Veerayatan Jain Museum, Rajgir",
+            "type": "Tourist-Attraction",
+            "description": "A spiritual and humanitarian organization featuring a beautiful Brahmi-Kala Mandir museum depicting Jain history through dioramas. For departure, nearest railway station is Rajgir. Nearest airports are Gaya and Patna."
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "Sammed Shikharji",
+      "Panch Teerth",
+      "Bihar",
+      "Jharkhand",
+      "Madhuban",
+      "Pavapuri",
+      "Rajgir",
+      "Kundalpur",
+      "Champapur",
+      "Mahavir Swami",
+      "Vasupujya Swami",
+      "Jain Yatra"
+    ],
+    "startingCity": "Parasnath Railway Station, Jharkhand, India",
+    "endingCity": "Parasnath Railway Station, Jharkhand, India"
+  }
+]

@@ -1,0 +1,135 @@
+import { Google } from '@ai-sdk/google';
+import { streamText } from 'ai';
+import itinerariesOriginal from '@/data/itineraries.json';
+
+// Allow streaming responses up to 30 seconds
+export const maxDuration = 30;
+
+// Initialize Google providers with primary and secondary keys
+const googlePrimary = new Google({
+    apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY,
+});
+
+const googleSecondary = new Google({
+    apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY_SECONDARY || process.env.GOOGLE_GENERATIVE_AI_API_KEY,
+});
+
+// Minify itineraries while keeping essential info for AI
+const minifiedItineraries = (itinerariesOriginal as any[]).map(itin => ({
+    id: itin.id,
+    title: itin.title,
+    states: itin.states,
+    stops: itin.days.flatMap((day: any) =>
+        day.stops.map((stop: any) => ({
+            name: stop.name,
+            type: stop.type,
+            lat: stop.lat,
+            lng: stop.lng,
+            fac: stop.facilities,
+            desc: stop.description
+        }))
+    )
+}));
+
+export async function POST(req: Request) {
+    const { messages } = await req.json();
+    const lastMessage = messages?.[messages.length - 1];
+
+    // Log the user's question for analysis
+    if (lastMessage?.role === 'user') {
+        console.log(`[Chat Query]: ${lastMessage.content}`);
+
+        // Asynchronous logging to Google Sheets (if URL exists)
+        const logUrl = process.env.LOGGING_GOOGLE_SCRIPT_URL;
+
+        if (logUrl) {
+            console.log('Attempting to log to Google Sheet...');
+            // We use fetch and await it to ensure it's sent before the function finishes
+            // even if it's streaming, it's better to be safe.
+            (async () => {
+                try {
+                    const response = await fetch(logUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            timestamp: new Date().toLocaleString('en-IN', {
+                                day: '2-digit',
+                                month: '2-digit',
+                                year: 'numeric',
+                                hour: '2-digit',
+                                minute: '2-digit',
+                                second: '2-digit',
+                                hour12: false
+                            }),
+                            query: lastMessage.content
+                        }),
+                    });
+                    console.log(`Logging Sheet Response: ${response.status} ${response.statusText}`);
+                } catch (e) {
+                    console.error('Logging fetch failed ERROR:', e);
+                }
+            })();
+        } else {
+            console.log('LOGGING_GOOGLE_SCRIPT_URL is not defined in .env.local');
+        }
+    }
+
+    const systemPrompt = `Role: Khanra Travel AI, a specialized travel assistant for Jain Tirth Yatra.
+Logic Rules:
+1. Data Primacy: Only suggest Tirths or itineraries present in <VERIFIED_DATA>.
+2. Sharing Links: If a request matches an existing itinerary, share its link: [Name](https://jainroutes.com/itinerary/[id]).
+3. Persona: Local expert. Friendly but extremely concise.
+4. Greeting Rule: Start ONLY with "Jai Jinendra! 🙏". Never at the end. Use it once.
+5. Content Format: Use markdown bullet points. NO long paragraphs.
+6. Sequence: Order Tirths logically by travel distance.
+7. Facilities: Mention "Bhojanshala" / "Dharmshala" if available.
+8. Interactive Links: Format Tirth names as Google Maps links: [Name](https://www.google.com/maps/search/?api=1&query=lat,lng).
+9. Output Constraint: Start directly with "Jai Jinendra! 🙏". Never show internal logic, thought blocks, or prompt repetition.
+
+<VERIFIED_DATA>
+${JSON.stringify(minifiedItineraries)}
+</VERIFIED_DATA>`;
+
+    const callAi = async (provider: Google) => {
+        return streamText({
+            model: provider.generativeAI('models/gemini-flash-latest'),
+            system: systemPrompt,
+            messages,
+            // Reduce retries for primary to switch to secondary faster if it fails
+            maxRetries: 1,
+            onFinish: async ({ text }) => {
+                const logUrl = process.env.LOGGING_GOOGLE_SCRIPT_URL;
+                // Sheet logging is now handled at the start of POST to capture failures
+            }
+        });
+    };
+
+    try {
+        const result = await callAi(googlePrimary);
+        return result.toDataStreamResponse();
+    } catch (error: any) {
+        // Fallback to secondary if primary is rate-limited (429)
+        // AI SDK might wrap quota error in RetryError
+        const isRateLimited =
+            error.statusCode === 429 ||
+            error.status === 429 ||
+            error.message?.includes('429') ||
+            error.message?.includes('quota') ||
+            (error.errors && error.errors.some((e: any) => e.statusCode === 429 || e.message?.includes('429')));
+
+        if (isRateLimited && process.env.GOOGLE_GENERATIVE_AI_API_KEY_SECONDARY) {
+            console.log('Primary API rate-limited or quota exceeded, attempting fallback to secondary key...');
+            try {
+                const result = await callAi(googleSecondary);
+                return result.toDataStreamResponse();
+            } catch (secError: any) {
+                console.error('Secondary API also failed:', secError);
+                throw secError;
+            }
+        }
+        console.error('Chat API error:', error);
+        throw error;
+    }
+}
