@@ -1,7 +1,9 @@
 'use client';
 
 import { useState, useEffect, useRef, KeyboardEvent } from 'react';
-import styles from './Autocomplete.module.css';
+import { Search } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { cn } from '@/lib/utils';
 
 interface AutocompleteProps {
     value: string;
@@ -9,6 +11,7 @@ interface AutocompleteProps {
     suggestions: string[];
     placeholder?: string;
     id?: string;
+    className?: string;
 }
 
 export default function Autocomplete({
@@ -16,12 +19,14 @@ export default function Autocomplete({
     onChange,
     suggestions,
     placeholder = 'Search...',
-    id = 'autocomplete'
+    id = 'autocomplete',
+    className,
 }: AutocompleteProps) {
     const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
     const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
     const containerRef = useRef<HTMLDivElement>(null);
+    const listId = `${id}-listbox`;
 
     // Filter suggestions based on input value
     useEffect(() => {
@@ -72,9 +77,12 @@ export default function Autocomplete({
         }
     };
 
+    const open = showSuggestions && value.trim().length > 0;
+
     return (
-        <div className={styles.autocompleteContainer} ref={containerRef}>
-            <input
+        <div className={cn('relative', className)} ref={containerRef}>
+            <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
+            <Input
                 type="text"
                 id={id}
                 placeholder={placeholder}
@@ -82,17 +90,23 @@ export default function Autocomplete({
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
                 onFocus={() => value.trim().length > 0 && setShowSuggestions(true)}
-                className={styles.input}
+                className="h-11 bg-background pl-9 text-base md:text-sm"
                 autoComplete="off"
+                role="combobox"
+                aria-expanded={open}
+                aria-controls={listId}
+                aria-autocomplete="list"
             />
-            {showSuggestions && value.trim().length > 0 && (
-                <ul className={styles.suggestionsList}>
+            {open && (
+                <ul
+                    id={listId}
+                    role="listbox"
+                    className="absolute inset-x-0 top-full z-30 mt-1.5 max-h-72 overflow-y-auto rounded-xl border bg-popover p-1 text-popover-foreground shadow-lg"
+                >
                     {filteredSuggestions.length > 0 ? (
                         filteredSuggestions.map((suggestion, index) => {
                             const isSelected = index === activeSuggestionIndex;
-                            const lowerValue = value.toLowerCase();
-                            const suggestionLower = suggestion.toLowerCase();
-                            const matchIndex = suggestionLower.indexOf(lowerValue);
+                            const matchIndex = suggestion.toLowerCase().indexOf(value.toLowerCase());
 
                             // Highlight the matching part
                             const before = suggestion.substring(0, matchIndex);
@@ -102,22 +116,24 @@ export default function Autocomplete({
                             return (
                                 <li
                                     key={index}
-                                    className={`${styles.suggestionItem} ${isSelected ? styles.suggestionItemActive : ''}`}
+                                    role="option"
+                                    aria-selected={isSelected}
+                                    className={cn(
+                                        'flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2 text-sm',
+                                        isSelected && 'bg-accent text-accent-foreground'
+                                    )}
                                     onClick={() => handleSuggestionClick(suggestion)}
                                     onMouseEnter={() => setActiveSuggestionIndex(index)}
                                 >
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.5 }}>
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                    </svg>
+                                    <Search className="size-3.5 shrink-0 opacity-50" />
                                     <span>
-                                        {before}<span className={styles.highlight}>{match}</span>{after}
+                                        {before}<span className="font-semibold text-primary">{match}</span>{after}
                                     </span>
                                 </li>
                             );
                         })
                     ) : (
-                        <li className={styles.noSuggestions}>No matches found</li>
+                        <li className="px-3 py-2 text-sm text-muted-foreground">No matches found</li>
                     )}
                 </ul>
             )}

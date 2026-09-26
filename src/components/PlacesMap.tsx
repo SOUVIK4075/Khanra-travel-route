@@ -51,65 +51,66 @@ function MapUpdater({ places }: { places: Place[] }) {
   return null;
 }
 
+const containerOverrides = [
+  '[&_.leaflet-popup-content-wrapper]:rounded-xl',
+  '[&_.leaflet-popup-content-wrapper]:bg-popover',
+  '[&_.leaflet-popup-content-wrapper]:text-popover-foreground',
+  '[&_.leaflet-popup-tip]:bg-popover',
+  '[&_.leaflet-popup-content]:m-3',
+  '[&_.leaflet-popup-content_p]:m-0',
+  '[&_.leaflet-popup-content_a]:text-primary',
+  '[&_.leaflet-tooltip]:rounded-md',
+  '[&_.leaflet-tooltip]:border-border',
+  '[&_.leaflet-tooltip]:bg-popover',
+  '[&_.leaflet-tooltip]:text-popover-foreground',
+].join(' ');
+
 export default function PlacesMap({ places }: { places: Place[] }) {
   const validPlaces = places.filter(
     (p) => p.location && p.location.lat != null && p.location.lng != null
   );
 
   // Default center to central India
-  const center: [number, number] = validPlaces.length > 0 
-    ? [validPlaces[0].location!.lat!, validPlaces[0].location!.lng!] 
+  const center: [number, number] = validPlaces.length > 0
+    ? [validPlaces[0].location!.lat!, validPlaces[0].location!.lng!]
     : [22.9734, 78.6569];
 
   return (
-    <div style={{ height: '600px', width: '100%', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)', border: '1px solid var(--border)' }}>
-      <MapContainer center={center} zoom={5} style={{ height: '100%', width: '100%', zIndex: 0 }}>
+    <div className={`isolate h-[65vh] min-h-[420px] w-full overflow-hidden rounded-2xl border shadow-sm sm:h-[600px] ${containerOverrides}`}>
+      <MapContainer center={center} zoom={5} className="z-0 size-full">
         <MapUpdater places={validPlaces} />
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {validPlaces.map((place) => (
-          <Marker 
-            key={`${place.source}-${place.id}`} 
+          <Marker
+            key={`${place.source}-${place.id}`}
             position={[place.location!.lat!, place.location!.lng!]}
             icon={place.source === 'tirth' ? tirthIcon : dharmshalaIcon}
           >
             <Tooltip direction="top" offset={[0, -40]} opacity={1}>
-              <span style={{ fontWeight: 600 }}>{place.name}</span>
+              <span className="font-semibold">{place.name}</span>
             </Tooltip>
             <Popup>
-              <div style={{ padding: '2px', display: 'flex', flexDirection: 'column', gap: '8px', minWidth: '180px' }}>
-                <h3 style={{ margin: 0, fontSize: '15px', color: '#333', fontWeight: 'bold' }}>{place.name}</h3>
-                <span style={{ 
-                  backgroundColor: place.source === 'tirth' ? '#fff1e6' : '#e6f3ff', 
-                  color: place.source === 'tirth' ? '#d35400' : '#0066cc',
-                  padding: '4px 10px',
-                  borderRadius: '12px',
-                  fontSize: '11px',
-                  width: 'fit-content',
-                  fontWeight: 600,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.02em'
-                }}>
+              <div className="flex min-w-[180px] flex-col gap-2 font-sans">
+                <h3 className="m-0 font-heading text-[15px] font-semibold leading-snug">{place.name}</h3>
+                <span
+                  className={
+                    place.source === 'tirth'
+                      ? 'w-fit rounded-full bg-primary/15 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-primary uppercase'
+                      : 'w-fit rounded-full bg-maroon/15 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-maroon uppercase'
+                  }
+                >
                   {place.type || (place.source === 'tirth' ? 'Tirth' : 'Dharmshala')}
                 </span>
+                {place.state && <span className="text-[11px] text-muted-foreground">{place.state}</span>}
                 {place.introText && (
-                  <p style={{ margin: 0, fontSize: '12px', color: '#666', lineHeight: '1.4' }}>
+                  <p className="text-xs leading-snug text-muted-foreground">
                     {place.introText.length > 80 ? `${place.introText.substring(0, 80)}...` : place.introText}
                   </p>
                 )}
-                <Link 
-                  href={`/${place.source}/${place.id}`}
-                  style={{ 
-                    display: 'inline-block', 
-                    marginTop: '4px',
-                    color: '#ff6b35',
-                    textDecoration: 'none',
-                    fontWeight: 600,
-                    fontSize: '13px'
-                  }}
-                >
+                <Link href={`/${place.source}/${place.id}`} className="mt-1 text-[13px] font-semibold no-underline hover:underline">
                   View Details &rarr;
                 </Link>
               </div>

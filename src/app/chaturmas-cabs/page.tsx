@@ -2,10 +2,22 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import styles from './page.module.css';
+import { Download, Globe, Phone, ExternalLink, TriangleAlert, CarTaxiFront } from 'lucide-react';
 import { cabOptions, CabOption } from '@/data/cabs';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import Ornament from '@/components/site/Ornament';
+import { cn } from '@/lib/utils';
 
 type FilterType = 'All' | '4 Seater' | '6/7 Seater' | '12 Seater';
+
+const FILTER_LABELS_HI: Record<FilterType, string> = {
+  'All': 'सभी',
+  '4 Seater': '4 सीटर',
+  '6/7 Seater': '6/7 सीटर',
+  '12 Seater': '12 सीटर',
+};
 
 function CabsContent() {
   const searchParams = useSearchParams();
@@ -49,138 +61,146 @@ function CabsContent() {
   );
 
   return (
-    <div className={styles.container}>
-      <header className={styles.header}>
-        <div style={{ flex: 1 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
-            <div>
-              <h1 className={styles.title}>{isHi ? 'रियायती कैब और यात्रा दरें' : 'Negotiated Cabs & Tours'}</h1>
-              <p className={styles.subtitle}>{isHi ? 'बेंगलुरु चातुर्मास 2026 यात्रियों के लिए विशेष दरें' : 'Special rates for Bengaluru Chaturmaas 2026 Yatris'}</p>
+    <div className="pb-8">
+      <section className="bg-mandala border-b bg-secondary/40">
+        <div className="container flex flex-col gap-6 py-10 sm:py-14">
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div className="space-y-2">
+              <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] text-primary uppercase">
+                <CarTaxiFront className="size-4" /> Chaturmaas 2026
+              </span>
+              <h1 className="text-3xl font-semibold sm:text-4xl">
+                {isHi ? 'रियायती कैब और यात्रा दरें' : 'Negotiated Cabs & Tours'}
+              </h1>
+              <p className="text-muted-foreground">
+                {isHi ? 'बेंगलुरु चातुर्मास 2026 यात्रियों के लिए विशेष दरें' : 'Special rates for Bengaluru Chaturmaas 2026 Yatris'}
+              </p>
             </div>
-            
-            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-              <button onClick={toggleLang} className={styles.langToggle}>
-                {isHi ? 'Read in English' : 'हिंदी में पढ़ें'}
-              </button>
-              <a 
-                href="https://docs.google.com/spreadsheets/d/1vLxLAB8CwDth1KU605bdT_5MMEkVpeFbfaKJWh5sBk4/export?format=pdf&gid=183019313" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className={styles.downloadBtn}
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                  <polyline points="7 10 12 15 17 10"></polyline>
-                  <line x1="12" y1="15" x2="12" y2="3"></line>
-                </svg>
-                {isHi ? 'PDF डाउनलोड करें' : 'Download PDF'}
-              </a>
+
+            <div className="flex flex-wrap gap-2">
+              <Button variant="outline" size="lg" className="h-10 px-4" onClick={toggleLang}>
+                <Globe /> {isHi ? 'Read in English' : 'हिंदी में पढ़ें'}
+              </Button>
+              <Button asChild size="lg" className="h-10 px-4">
+                <a
+                  href="https://docs.google.com/spreadsheets/d/1vLxLAB8CwDth1KU605bdT_5MMEkVpeFbfaKJWh5sBk4/export?format=pdf&gid=183019313"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Download /> {isHi ? 'PDF डाउनलोड करें' : 'Download PDF'}
+                </a>
+              </Button>
             </div>
           </div>
 
-          <div style={{ marginTop: '1rem', padding: '0.75rem 1rem', background: '#fffbeb', borderLeft: '4px solid #f59e0b', borderRadius: '4px' }}>
-            <p style={{ margin: 0, fontSize: '0.9rem', color: '#92400e', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span style={{ fontSize: '1.2rem' }}>⚠️</span> 
-              <strong>{isHi ? 'ध्यान दें:' : 'Note:'}</strong> {isHi ? 'टोल टैक्स, पार्किंग शुल्क और स्टेट परमिट (कर्नाटक के बाहर) का भुगतान यात्री को अतिरिक्त करना होगा।' : 'Toll charges, parking fees, and state permits (if traveling outside Karnataka) are extra and must be paid by the passenger.'}
-            </p>
+          <Alert className="border-gold/50 bg-gold/10">
+            <TriangleAlert className="text-gold-foreground dark:text-gold" />
+            <AlertDescription className="text-foreground">
+              <p>
+                <strong>{isHi ? 'ध्यान दें:' : 'Note:'}</strong>{' '}
+                {isHi ? 'टोल टैक्स, पार्किंग शुल्क और स्टेट परमिट (कर्नाटक के बाहर) का भुगतान यात्री को अतिरिक्त करना होगा।' : 'Toll charges, parking fees, and state permits (if traveling outside Karnataka) are extra and must be paid by the passenger.'}
+              </p>
+            </AlertDescription>
+          </Alert>
+
+          <div role="group" aria-label={isHi ? 'वाहन क्षमता' : 'Vehicle capacity'} className="flex flex-wrap gap-2">
+            {(['All', '4 Seater', '6/7 Seater', '12 Seater'] as FilterType[]).map((f) => (
+              <button
+                key={f}
+                type="button"
+                aria-pressed={filter === f}
+                onClick={() => setFilter(f)}
+                className={cn(
+                  'rounded-full border px-4 py-1.5 text-sm font-medium transition-colors focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none',
+                  filter === f
+                    ? 'border-primary bg-primary text-primary-foreground shadow-sm'
+                    : 'bg-card hover:border-primary/50 hover:bg-accent'
+                )}
+              >
+                {isHi ? FILTER_LABELS_HI[f] : f}
+              </button>
+            ))}
           </div>
-          
-          <div className={styles.filters}>
-            {(['All', '4 Seater', '6/7 Seater', '12 Seater'] as FilterType[]).map(f => {
-              const labelEn = f;
-              let labelHi: string = f;
-              if (f === 'All') labelHi = 'सभी';
-              else if (f === '4 Seater') labelHi = '4 सीटर';
-              else if (f === '6/7 Seater') labelHi = '6/7 सीटर';
-              else if (f === '12 Seater') labelHi = '12 सीटर';
-              
+        </div>
+      </section>
+
+      <div className="container pt-8">
+        {sortedCompanies.length === 0 ? (
+          <div className="rounded-2xl border border-dashed p-12 text-center text-muted-foreground">
+            {isHi ? 'इस फिल्टर से मेल खाने वाले कोई वाहन नहीं मिले।' : 'No vehicles found matching this filter.'}
+          </div>
+        ) : (
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {sortedCompanies.map((company) => {
+              const cabs = groupedCabs[company];
+              const contact = cabs[0].contact;
+              const isLink = contact.startsWith('http');
+
               return (
-                <button
-                  key={f}
-                  className={`${styles.filterBtn} ${filter === f ? styles.activeFilter : ''}`}
-                  onClick={() => setFilter(f)}
-                >
-                  {isHi ? labelHi : labelEn}
-                </button>
+                <Card key={company} className="gap-0 py-0 shadow-sm transition-shadow hover:shadow-md">
+                  <CardHeader className="flex flex-wrap items-center justify-between gap-3 border-b bg-secondary/50 py-4">
+                    <CardTitle className="font-heading text-lg font-semibold">{company}</CardTitle>
+                    {isLink ? (
+                      <Button asChild variant="outline" size="sm" className="h-8 px-3">
+                        <a href={contact} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink /> {isHi ? 'वेबसाइट देखें' : 'Visit Website'}
+                        </a>
+                      </Button>
+                    ) : (
+                      <Button asChild size="sm" className="h-8 px-3">
+                        <a href={`tel:${contact}`}>
+                          <Phone /> {contact}
+                        </a>
+                      </Button>
+                    )}
+                  </CardHeader>
+                  <CardContent className="overflow-x-auto px-0">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="border-b text-left text-xs tracking-wide text-muted-foreground uppercase">
+                          <th className="px-4 py-2.5 font-semibold">{isHi ? 'वाहन' : 'Vehicle'}</th>
+                          <th className="px-4 py-2.5 font-semibold">
+                            {company === 'Aishwarya Cabs' ? (isHi ? 'कुल लागत' : 'Cost') : (isHi ? 'दर/किमी' : 'Rate/Km')}
+                          </th>
+                          <th className="px-4 py-2.5 font-semibold">{isHi ? 'भत्ता/दिन' : 'Bata/Day'}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {cabs.map((cab, idx) => (
+                          <tr key={idx} className="border-b last:border-0 even:bg-muted/40">
+                            <td className="px-4 py-3 font-medium">
+                              {cab.vehicleType}
+                              {cab.capacity && cab.capacity !== '-' && (
+                                <span className="block text-xs font-normal text-muted-foreground">
+                                  {isHi ? 'क्षमता:' : 'Capacity:'} {cab.capacity}
+                                </span>
+                              )}
+                            </td>
+                            <td className="px-4 py-3 font-semibold text-primary">
+                              {cab.ratePerKm !== '-' ? `₹${cab.ratePerKm}` : '-'}
+                            </td>
+                            <td className="px-4 py-3">
+                              {cab.bataPerDay !== '-' ? `₹${cab.bataPerDay}` : '-'}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </CardContent>
+                </Card>
               );
             })}
           </div>
-        </div>
-      </header>
-
-      {sortedCompanies.length === 0 ? (
-        <div style={{ textAlign: 'center', padding: '3rem', color: '#6b7280' }}>
-          {isHi ? 'इस फिल्टर से मेल खाने वाले कोई वाहन नहीं मिले।' : 'No vehicles found matching this filter.'}
-        </div>
-      ) : (
-        <div className={styles.grid}>
-          {sortedCompanies.map((company) => {
-            const cabs = groupedCabs[company];
-            const contact = cabs[0].contact;
-            const isLink = contact.startsWith('http');
-
-            return (
-              <div key={company} className={styles.card}>
-                <div className={styles.cardHeader}>
-                  <h2 className={styles.companyName}>{company}</h2>
-                  <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-                    {isLink ? (
-                      <a href={contact} target="_blank" rel="noopener noreferrer" className={styles.contact}>
-                        {isHi ? 'वेबसाइट देखें' : 'Visit Website'}
-                      </a>
-                    ) : (
-                      <a href={`tel:${contact}`} className={styles.contact}>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                        </svg>
-                        {contact}
-                      </a>
-                    )}
-                  </div>
-                </div>
-                <div className={styles.tableWrapper}>
-                  <table className={styles.table}>
-                    <thead>
-                      <tr>
-                        <th>{isHi ? 'वाहन' : 'Vehicle'}</th>
-                        <th>{company === 'Aishwarya Cabs' ? (isHi ? 'कुल लागत' : 'Cost') : (isHi ? 'दर/किमी' : 'Rate/Km')}</th>
-                        <th>{isHi ? 'भत्ता/दिन' : 'Bata/Day'}</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {cabs.map((cab, idx) => (
-                        <tr key={idx}>
-                          <td className={styles.vehicleType}>
-                            {cab.vehicleType}
-                            {cab.capacity && cab.capacity !== '-' && (
-                              <span style={{ display: 'block', fontSize: '0.8rem', color: '#6b7280', fontWeight: 'normal' }}>
-                                {isHi ? 'क्षमता:' : 'Capacity:'} {cab.capacity}
-                              </span>
-                            )}
-                          </td>
-                          <td className={styles.rate}>
-                            {cab.ratePerKm !== '-' ? `₹${cab.ratePerKm}` : '-'}
-                          </td>
-                          <td>
-                            {cab.bataPerDay !== '-' ? `₹${cab.bataPerDay}` : '-'}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
+        )}
+        <Ornament className="mt-12" />
+      </div>
     </div>
   );
 }
 
 export default function ChaturmasCabsPage() {
   return (
-    <Suspense fallback={<div style={{ padding: '3rem', textAlign: 'center' }}>Loading...</div>}>
+    <Suspense fallback={<div className="p-12 text-center text-muted-foreground">Loading...</div>}>
       <CabsContent />
     </Suspense>
   );

@@ -2,7 +2,10 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import styles from './page.module.css';
+import { ArrowRight, Compass, Download, FileText, MapPin, Navigation, CarTaxiFront, Sparkles } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import SectionHeading from '@/components/site/SectionHeading';
+import Ornament from '@/components/site/Ornament';
 import SearchFilters from '@/components/SearchFilters';
 import ItineraryCard from '@/components/ItineraryCard';
 import ChaturmasModal from '@/components/ChaturmasModal';
@@ -23,6 +26,18 @@ interface Itinerary {
 }
 
 const itineraries: Itinerary[] = itinerariesOriginal as unknown as Itinerary[];
+
+// Bengaluru Chaturmaas 2026 resources shown in the banner below the hero.
+const CHATURMAS_RESOURCES = [
+  { href: '/gyanoday-travel-guide?lang=en', icon: Navigation, title: 'How to Reach Shri Gyanoday Tirth', subtitle: 'English Guide' },
+  { href: '/gyanoday-travel-guide?lang=hi', icon: MapPin, title: 'श्री ज्ञानोदय तीर्थ कैसे पहुँचें?', subtitle: 'हिंदी मार्गदर्शिका' },
+  { href: '/pdfs/karnataka-itinerary-en.pdf', icon: FileText, title: 'Karnataka Itineraries', subtitle: 'English PDF', external: true },
+  { href: '/pdfs/karnataka-itinerary-hi.pdf', icon: Download, title: 'कर्नाटक यात्रा मार्ग', subtitle: 'हिंदी PDF', external: true },
+  { href: '/pdfs/tamil-nadu-itinerary-en.pdf', icon: FileText, title: 'Tamil Nadu Itineraries', subtitle: 'English PDF', external: true },
+  { href: '/pdfs/tamil-nadu-itinerary-hi.pdf', icon: Download, title: 'तमिलनाडु यात्रा मार्ग', subtitle: 'हिंदी PDF', external: true },
+  { href: '/chaturmas-cabs?lang=en', icon: CarTaxiFront, title: 'Negotiated Cabs & Tours', subtitle: 'English Version' },
+  { href: '/chaturmas-cabs?lang=hi', icon: CarTaxiFront, title: 'रियायती कैब और यात्रा दरें', subtitle: 'हिंदी संस्करण' },
+];
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -100,17 +115,26 @@ export default function Home() {
   }, []);
 
   return (
-    <div className={styles.wrapper}>
+    <div>
       <ChaturmasModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      <section className={styles.hero}>
-        <div className="container">
-          <h1 className={styles.heroTitle}>
-            Discover & Share <span className={styles.highlight}>Khanra Travel</span>
+
+      {/* Hero */}
+      <section className="relative overflow-hidden border-b bg-mandala">
+        <div aria-hidden className="pointer-events-none absolute -top-40 left-1/2 size-[36rem] -translate-x-1/2 rounded-full bg-gradient-to-b from-gold/25 to-transparent blur-3xl" />
+        <div className="relative container flex flex-col items-center py-16 text-center sm:py-24">
+          <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-card/70 px-4 py-1.5 text-xs font-semibold tracking-[0.18em] text-accent-foreground uppercase backdrop-blur">
+            <Sparkles className="size-3.5 text-gold" /> Jai Jagannath 🙏
+          </span>
+          <h1 className="max-w-4xl text-4xl leading-[1.1] font-bold sm:text-6xl">
+            Discover & Share{' '}
+            <span className="block text-gradient-saffron">Khanra Travel</span>
           </h1>
-          <p className={styles.heroSubtitle}>
-            Find detailed travel plans for Jain Tirths, complete with Dharmshalas. Plan your spiritual journey today.
+          <Ornament className="my-6" />
+          <p className="mb-10 max-w-2xl text-lg text-muted-foreground sm:text-xl">
+            Explore sacred Jain Tirths and temples across India with day-by-day routes, Dharmshalas, Bhojanshalas and directions for every stop.
           </p>
-          <div className={styles.searchContainer}>
+
+          <div className="w-full max-w-5xl">
             <SearchFilters
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
@@ -123,226 +147,78 @@ export default function Home() {
               onSearchClick={handleSearchClick}
             />
           </div>
-          <div className={styles.ctaGroup}>
-            <button className="btn btn-outline" onClick={() => {
-              const searchInput = document.querySelector('input');
-              if (searchInput) searchInput.focus();
-            }}>
-              Explore Routes
-            </button>
-            <Link href="/directory" className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              📍 Places Directory
-            </Link>
+
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <Button
+              variant="outline"
+              size="lg"
+              className="h-11 rounded-full px-6"
+              onClick={() => document.getElementById('search')?.focus()}
+            >
+              <Compass /> Explore Routes
+            </Button>
+            <Button asChild size="lg" className="h-11 rounded-full px-6">
+              <Link href="/directory">
+                <MapPin /> Places Directory
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
 
       {/* Permanent Banner Section for Chaturmas PDFs */}
-      <section className="container" style={{ margin: '2rem auto' }}>
-        <div className="card" style={{
-          background: 'linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%)',
-          border: '1px solid #fed7aa',
-          padding: '1.5rem',
-          borderRadius: '1rem'
-        }}>
-          <div style={{ marginBottom: '1rem' }}>
-            <h3 style={{ margin: 0, color: '#9a3412', fontSize: '1.25rem', fontWeight: 700 }}>
+      <section className="container py-12">
+        <div className="relative overflow-hidden rounded-3xl border border-gold/40 bg-gradient-to-br from-accent via-card to-secondary p-6 shadow-sm sm:p-8">
+          <div aria-hidden className="absolute -top-16 -right-16 size-48 rounded-full bg-primary/10 blur-2xl" />
+          <div className="relative mb-6">
+            <h3 className="text-xl font-semibold text-maroon sm:text-2xl dark:text-gold">
               🙏 Bengaluru Chaturmaas 2026 (आत्म-सिलिकॉन वर्षायोग) - Itinerary PDFs
             </h3>
-            <p style={{ margin: '0.25rem 0 0', color: '#c2410c', fontSize: '0.9rem' }}>
-              Download ready-to-use print & digital itinerary tables.
-            </p>
+            <p className="mt-1 text-sm text-muted-foreground">Download ready-to-use print & digital itinerary tables.</p>
           </div>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: '1rem'
-          }}>
-            <a
-              href="/gyanoday-travel-guide?lang=en"
-              className="card"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-                padding: '0.85rem 1rem',
-                background: 'white',
-                border: '1px solid #fdba74',
-                textDecoration: 'none'
-              }}
-            >
-              <span style={{ fontSize: '1.5rem' }}>📍</span>
-              <div>
-                <strong style={{ display: 'block', color: 'var(--secondary)', fontSize: '0.95rem' }}>How to Reach Shri Gyanoday Tirth</strong>
-                <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>English Guide</span>
-              </div>
-            </a>
-
-            <a
-              href="/gyanoday-travel-guide?lang=hi"
-              className="card"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-                padding: '0.85rem 1rem',
-                background: 'white',
-                border: '1px solid #fdba74',
-                textDecoration: 'none'
-              }}
-            >
-              <span style={{ fontSize: '1.5rem' }}>🗺️</span>
-              <div>
-                <strong style={{ display: 'block', color: 'var(--secondary)', fontSize: '0.95rem' }}>श्री ज्ञानोदय तीर्थ कैसे पहुँचें?</strong>
-                <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>हिंदी मार्गदर्शिका</span>
-              </div>
-            </a>
-            <a
-              href="/pdfs/karnataka-itinerary-en.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="card"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-                padding: '0.85rem 1rem',
-                background: 'white',
-                border: '1px solid #fdba74',
-                textDecoration: 'none'
-              }}
-            >
-              <span style={{ fontSize: '1.5rem' }}>📄</span>
-              <div>
-                <strong style={{ display: 'block', color: 'var(--secondary)', fontSize: '0.95rem' }}>Karnataka Itineraries</strong>
-                <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>English PDF</span>
-              </div>
-            </a>
-
-            <a
-              href="/pdfs/karnataka-itinerary-hi.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="card"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-                padding: '0.85rem 1rem',
-                background: 'white',
-                border: '1px solid #fdba74',
-                textDecoration: 'none'
-              }}
-            >
-              <span style={{ fontSize: '1.5rem' }}>📜</span>
-              <div>
-                <strong style={{ display: 'block', color: 'var(--secondary)', fontSize: '0.95rem' }}>कर्नाटक यात्रा मार्ग</strong>
-                <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>हिंदी PDF</span>
-              </div>
-            </a>
-
-            <a
-              href="/pdfs/tamil-nadu-itinerary-en.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="card"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-                padding: '0.85rem 1rem',
-                background: 'white',
-                border: '1px solid #fdba74',
-                textDecoration: 'none'
-              }}
-            >
-              <span style={{ fontSize: '1.5rem' }}>📄</span>
-              <div>
-                <strong style={{ display: 'block', color: 'var(--secondary)', fontSize: '0.95rem' }}>Tamil Nadu Itineraries</strong>
-                <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>English PDF</span>
-              </div>
-            </a>
-
-            <a
-              href="/pdfs/tamil-nadu-itinerary-hi.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="card"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-                padding: '0.85rem 1rem',
-                background: 'white',
-                border: '1px solid #fdba74',
-                textDecoration: 'none'
-              }}
-            >
-              <span style={{ fontSize: '1.5rem' }}>📜</span>
-              <div>
-                <strong style={{ display: 'block', color: 'var(--secondary)', fontSize: '0.95rem' }}>तमिलनाडु यात्रा मार्ग</strong>
-                <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>हिंदी PDF</span>
-              </div>
-            </a>
-
-            <a
-              href="/chaturmas-cabs?lang=en"
-              className="card"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-                padding: '0.85rem 1rem',
-                background: 'white',
-                border: '1px solid #fdba74',
-                textDecoration: 'none'
-              }}
-            >
-              <span style={{ fontSize: '1.5rem' }}>🚖</span>
-              <div>
-                <strong style={{ display: 'block', color: 'var(--secondary)', fontSize: '0.95rem' }}>Negotiated Cabs & Tours</strong>
-                <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>English Version</span>
-              </div>
-            </a>
-
-            <a
-              href="/chaturmas-cabs?lang=hi"
-              className="card"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-                padding: '0.85rem 1rem',
-                background: 'white',
-                border: '1px solid #fdba74',
-                textDecoration: 'none'
-              }}
-            >
-              <span style={{ fontSize: '1.5rem' }}>🚖</span>
-              <div>
-                <strong style={{ display: 'block', color: 'var(--secondary)', fontSize: '0.95rem' }}>रियायती कैब और यात्रा दरें</strong>
-                <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>हिंदी संस्करण</span>
-              </div>
-            </a>
+          <div className="relative grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {CHATURMAS_RESOURCES.map(({ href, icon: Icon, title, subtitle, external }) => (
+              <a
+                key={href}
+                href={href}
+                {...(external && { target: '_blank', rel: 'noopener noreferrer' })}
+                className="group flex items-center gap-3 rounded-xl border bg-card/90 p-3.5 transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"
+              >
+                <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                  <Icon className="size-5" />
+                </span>
+                <span className="min-w-0">
+                  <strong className="block text-sm leading-snug font-semibold">{title}</strong>
+                  <span className="text-xs text-muted-foreground">{subtitle}</span>
+                </span>
+              </a>
+            ))}
           </div>
         </div>
       </section>
 
-      <section id="featured-section" className={`container ${styles.featuredSection}`}>
-        <h2 className={styles.sectionTitle}>
-          {filteredItineraries.length === itineraries.length
-            ? 'Featured Itineraries'
-            : `Found ${filteredItineraries.length} ${filteredItineraries.length !== 1 ? 'Itineraries' : 'Itinerary'}`
+      {/* Itineraries */}
+      <section id="featured-section" className="container scroll-mt-24 py-8">
+        <SectionHeading
+          eyebrow="Yatra Routes"
+          title={
+            filteredItineraries.length === itineraries.length
+              ? 'Featured Itineraries'
+              : `Found ${filteredItineraries.length} ${filteredItineraries.length !== 1 ? 'Itineraries' : 'Itinerary'}`
           }
-        </h2>
+        />
         {filteredItineraries.length === 0 ? (
-          <div className={styles.noResults}>
-            <p>No itineraries found matching your search criteria.</p>
-            <p className={styles.noResultsHint}>Be the first to <Link href="/submit" style={{ color: 'var(--primary)', textDecoration: 'underline' }}>share a route</Link> for this area!</p>
+          <div className="mx-auto max-w-lg rounded-2xl border border-dashed bg-card p-10 text-center">
+            <p className="font-medium">No itineraries found matching your search criteria.</p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Be the first to{' '}
+              <Link href="/submit" className="font-semibold text-primary underline underline-offset-4">share a route</Link>{' '}
+              for this area!
+            </p>
           </div>
         ) : (
-          <div className={styles.grid}>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {filteredItineraries.map((itinerary) => (
               <ItineraryCard
                 key={itinerary.id}
@@ -359,32 +235,37 @@ export default function Home() {
         )}
       </section>
 
-      <section className={styles.impactSection}>
-        <div className="container">
-          <h2 className={styles.sectionTitle} style={{ color: 'white' }}>Our Community Impact</h2>
-          <p className={styles.impactSubtitle}>Khanra Travel is built by the community, for the community.</p>
+      {/* Community impact */}
+      <section className="container py-16">
+        <div className="relative overflow-hidden rounded-3xl bg-maroon px-6 py-14 text-center text-maroon-foreground sm:px-12">
+          <div aria-hidden className="absolute inset-0 bg-mandala opacity-60" />
+          <div className="relative">
+            <h2 className="text-3xl font-semibold sm:text-4xl">Our Community Impact</h2>
+            <Ornament className="my-4" />
+            <p className="mx-auto max-w-xl text-maroon-foreground/80">Khanra Travel is built by the community, for the community.</p>
 
-          <div className={styles.impactGrid}>
-            <div className={styles.impactItem}>
-              <h3>{totalUniqueTirths}</h3>
-              <p>Tirths Covered</p>
+            <div className="mx-auto my-10 grid max-w-3xl gap-6 sm:grid-cols-3">
+              {[
+                { value: totalUniqueTirths, label: 'Tirths Covered' },
+                { value: totalRoutes, label: 'Verified Routes' },
+                { value: '1000+', label: 'Yatris & Growing' },
+              ].map(({ value, label }) => (
+                <div key={label} className="rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur-sm">
+                  <p className="font-heading text-5xl font-bold text-gold">{value}</p>
+                  <p className="mt-2 text-sm tracking-wide text-maroon-foreground/80 uppercase">{label}</p>
+                </div>
+              ))}
             </div>
-            <div className={styles.impactItem}>
-              <h3>{totalRoutes}</h3>
-              <p>Verified Routes</p>
-            </div>
-            <div className={styles.impactItem}>
-              <h3>1000+</h3>
-              <p>Yatris & Growing</p>
-            </div>
-          </div>
 
-          <div className={styles.contributionNudge}>
-            <h3>Earn Punya by Guiding Others</h3>
-            <p>Your travel experience can help a fellow Sadharmi plan their spiritual journey safely and comfortably.</p>
-            <Link href="/submit" className="btn btn-primary" style={{ padding: '1rem 2.5rem' }}>
-              Contribute an Itinerary
-            </Link>
+            <div className="mx-auto max-w-xl rounded-2xl bg-white/5 p-6 ring-1 ring-white/10">
+              <h3 className="mb-2 text-2xl font-semibold">Earn Punya by Guiding Others</h3>
+              <p className="mb-6 text-maroon-foreground/80">Your travel experience can help a fellow Sadharmi plan their spiritual journey safely and comfortably.</p>
+              <Button asChild size="lg" className="h-12 rounded-full bg-gold px-8 text-base text-gold-foreground hover:bg-gold/90">
+                <Link href="/submit">
+                  Contribute an Itinerary <ArrowRight />
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>

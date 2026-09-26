@@ -1,6 +1,7 @@
 'use client';
 
-import styles from './MapEmbed.module.css';
+import { Map as MapIcon } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface Stop {
     name: string;
@@ -85,12 +86,12 @@ export default function MapEmbed({ day, stops, states, previousDayLastStop, star
     }
 
     return (
-        <div className={styles.mapContainer}>
+        <div className="my-6 overflow-hidden rounded-2xl border bg-card shadow-sm print:break-inside-avoid">
             {apiKey ? (
-                <div className={styles.embedWrapper}>
+                <div className="h-72 w-full bg-muted sm:h-96">
                     <iframe
                         title={`Day ${day} Route Map`}
-                        className={styles.iframe}
+                        className="size-full border-0"
                         loading="lazy"
                         allowFullScreen
                         referrerPolicy="no-referrer-when-downgrade"
@@ -99,20 +100,13 @@ export default function MapEmbed({ day, stops, states, previousDayLastStop, star
                 </div>
             ) : null}
 
-            <div className={styles.actionWrapper}>
-                <a
-                    href={universalLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`btn btn-primary ${styles.openMapBtn}`}
-                >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon>
-                        <line x1="9" y1="3" x2="9" y2="18"></line>
-                        <line x1="15" y1="6" x2="15" y2="21"></line>
-                    </svg>
-                    {stops.length > 1 ? `Open Day ${day} Route in Google Maps` : `View Location in Google Maps`}
-                </a>
+            <div className="flex justify-center border-t bg-secondary/40 p-4">
+                <Button asChild size="lg" className="h-10 w-full max-w-md gap-2 px-4 text-sm">
+                    <a href={universalLink} target="_blank" rel="noopener noreferrer">
+                        <MapIcon className="size-4" />
+                        {stops.length > 1 ? `Open Day ${day} Route in Google Maps` : `View Location in Google Maps`}
+                    </a>
+                </Button>
             </div>
         </div>
     );

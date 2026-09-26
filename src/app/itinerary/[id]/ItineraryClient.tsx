@@ -3,9 +3,45 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
-import styles from './page.module.css';
+import {
+    ArrowDown,
+    ArrowDownUp,
+    ArrowLeft,
+    ArrowRight,
+    ArrowUp,
+    BadgeCheck,
+    BedDouble,
+    Check,
+    ChevronDown,
+    ClipboardList,
+    Clock,
+    ExternalLink,
+    Flag,
+    Landmark,
+    Lightbulb,
+    Loader2,
+    LocateFixed,
+    MapPin,
+    Navigation,
+    Pencil,
+    Phone,
+    Plus,
+    Printer,
+    Trash2,
+    Undo2,
+    UserRound,
+    Utensils,
+    X,
+} from 'lucide-react';
 import WhatsAppShareButton from '@/components/WhatsAppShareButton';
 import MapEmbed from '@/components/MapEmbed';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { InstagramIcon } from '@/components/site/BrandIcons';
 
 interface Itinerary {
     id: string;
@@ -47,6 +83,7 @@ export default function ItineraryClient({ itinerary }: ItineraryClientProps) {
     const [endLocation, setEndLocation] = useState('');
     const [showHint, setShowHint] = useState(false);
     const [expandedContacts, setExpandedContacts] = useState<Record<string, boolean>>({});
+    const [isPreparingPrint, setIsPreparingPrint] = useState(false);
 
     // --- Customization State ---
     const [isEditing, setIsEditing] = useState(false);
@@ -338,98 +375,143 @@ export default function ItineraryClient({ itinerary }: ItineraryClientProps) {
         );
     };
 
+    const handlePrint = async () => {
+        setIsPreparingPrint(true);
+
+        const iframes = document.querySelectorAll('iframe');
+
+        // Programmatically scroll to each iframe to trigger lazy loading and rendering
+        for (let i = 0; i < iframes.length; i++) {
+            iframes[i].scrollIntoView({ block: 'center' });
+            // Wait 1.5s for each map to fully load and render
+            await new Promise(resolve => setTimeout(resolve, 1500));
+        }
+
+        // Scroll back to the top of the page
+        window.scrollTo(0, 0);
+
+        // Small buffer before opening print dialog
+        setTimeout(() => {
+            window.print();
+            setIsPreparingPrint(false);
+        }, 500);
+    };
+
+    const stopTypeIcon = (type: string) => {
+        if (type === 'Tirth' || type === 'Temple') return Landmark;
+        if (type === 'Dharmshala') return BedDouble;
+        if (type === 'Bhojanshala') return Utensils;
+        return MapPin;
+    };
+
     return (
-        <div className="container">
-            <div className={styles.header}>
-                <Link href="/" className={styles.backLink}>&larr; Back to Itineraries</Link>
-                <div className={styles.categoryBadges}>
-                    {itinerary.states.map((state) => (
-                        <span key={state} className={styles.categoryBadge}>{state}</span>
-                    ))}
-                </div>
-                <h1 className={styles.title}>{itinerary.title}</h1>
-                <div className={styles.meta}>
-                    <span>⏱ {itinerary.duration}</span>
-                    <span>
-                        👤 Shared by {itinerary.author}
-                        {itinerary.authorInstagram && (
-                            <a
-                                href={itinerary.authorInstagram}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={styles.instagramLink}
-                                aria-label="Author's Instagram"
-                            >
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                                </svg>
-                            </a>
-                        )}
-                    </span>
-                </div>
-                <p className={styles.description}>{itinerary.description}</p>
-
-                <div className={styles.actionButtons}>
-                    <WhatsAppShareButton title={itinerary.title} />
-                    {!isEditing ? (
-                        <button 
-                            onClick={() => {
-                                setIsEditing(true);
-                                setEditableDays(activeDays);
-                            }} 
-                            className={styles.customizeBtn}
-                        >
-                            ✏️ Customize Itinerary
-                        </button>
-                    ) : (
-                        <>
-                            <button onClick={reverseItinerary} className={styles.customizeBtn} title="Reverse order of days and stops">
-                                🔄 Reverse
-                            </button>
-                            <button onClick={handleApplyChanges} className={styles.applyBtn}>
-                                ✅ Apply
-                            </button>
-                            <button onClick={() => setIsEditing(false)} className={styles.cancelBtn}>
-                                ❌ Cancel
-                            </button>
-                        </>
-                    )}
-                    <button 
-                        onClick={async (e) => {
-                            const btn = e.currentTarget;
-                            const originalHTML = btn.innerHTML;
-                            btn.innerHTML = '⏳ Preparing Maps...';
-                            
-                            const iframes = document.querySelectorAll('iframe');
-                            
-                            // Programmatically scroll to each iframe to trigger lazy loading and rendering
-                            for (let i = 0; i < iframes.length; i++) {
-                                iframes[i].scrollIntoView({ block: 'center' });
-                                // Wait 1.5s for each map to fully load and render
-                                await new Promise(resolve => setTimeout(resolve, 1500));
-                            }
-                            
-                            // Scroll back to the top of the page
-                            window.scrollTo(0, 0);
-                            
-                            // Small buffer before opening print dialog
-                            setTimeout(() => {
-                                window.print();
-                                btn.innerHTML = originalHTML;
-                            }, 500);
-                        }}
-                        className={styles.printBtn}
-                        aria-label="Print or Save as PDF"
+        <div className="pb-16">
+            <section className="relative overflow-hidden border-b bg-mandala print:border-0 print:bg-none">
+                <div className="container py-8 sm:py-12">
+                    <Link
+                        href="/"
+                        className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary print:hidden"
                     >
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <polyline points="6 9 6 2 18 2 18 9"></polyline>
-                            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
-                            <rect x="6" y="14" width="12" height="8"></rect>
-                        </svg>
-                        Save as PDF / Print
-                    </button>
-                </div>
+                        <ArrowLeft className="size-4" /> Back to Itineraries
+                    </Link>
 
+                    <div className="mb-4 flex flex-wrap gap-2">
+                        {itinerary.states.map((state) => (
+                            <Badge key={state} variant="secondary" className="h-6 px-2.5 text-xs">
+                                <MapPin /> {state}
+                            </Badge>
+                        ))}
+                    </div>
+
+                    <h1 className="max-w-4xl text-3xl font-semibold sm:text-5xl">{itinerary.title}</h1>
+
+                    <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+                        <span className="inline-flex items-center gap-1.5">
+                            <Clock className="size-4 text-primary" /> {itinerary.duration}
+                        </span>
+                        <span className="inline-flex items-center gap-1.5">
+                            <UserRound className="size-4 text-primary" /> Shared by {itinerary.author}
+                            {itinerary.authorInstagram && (
+                                <a
+                                    href={itinerary.authorInstagram}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="ml-1 inline-flex size-7 items-center justify-center rounded-full text-maroon transition-colors hover:bg-accent hover:text-primary"
+                                    aria-label="Author's Instagram"
+                                >
+                                    <InstagramIcon className="size-4" />
+                                </a>
+                            )}
+                        </span>
+                    </div>
+
+                    <p className="mt-4 max-w-3xl text-base leading-relaxed text-foreground/80 sm:text-lg">{itinerary.description}</p>
+
+                    <div className="mt-6 flex flex-wrap gap-2 print:hidden">
+                        <WhatsAppShareButton title={itinerary.title} />
+                        {!isEditing ? (
+                            <Button
+                                variant="outline"
+                                size="lg"
+                                className="h-10 gap-2 px-4"
+                                onClick={() => {
+                                    setIsEditing(true);
+                                    setEditableDays(activeDays);
+                                }}
+                            >
+                                <Pencil /> Customize Itinerary
+                            </Button>
+                        ) : (
+                            <>
+                                <Button
+                                    variant="outline"
+                                    size="lg"
+                                    className="h-10 gap-2 px-4"
+                                    onClick={reverseItinerary}
+                                    title="Reverse order of days and stops"
+                                >
+                                    <ArrowDownUp /> Reverse
+                                </Button>
+                                <Button
+                                    size="lg"
+                                    className="h-10 gap-2 bg-success px-4 text-white hover:bg-success/90"
+                                    onClick={handleApplyChanges}
+                                >
+                                    <Check /> Apply
+                                </Button>
+                                <Button
+                                    variant="destructive"
+                                    size="lg"
+                                    className="h-10 gap-2 px-4"
+                                    onClick={() => setIsEditing(false)}
+                                >
+                                    <X /> Cancel
+                                </Button>
+                            </>
+                        )}
+                        <Button
+                            variant="secondary"
+                            size="lg"
+                            className="h-10 gap-2 px-4"
+                            onClick={handlePrint}
+                            disabled={isPreparingPrint}
+                            aria-label="Print or Save as PDF"
+                        >
+                            {isPreparingPrint ? (
+                                <>
+                                    <Loader2 className="animate-spin" /> Preparing Maps...
+                                </>
+                            ) : (
+                                <>
+                                    <Printer /> Save as PDF / Print
+                                </>
+                            )}
+                        </Button>
+                    </div>
+                </div>
+            </section>
+
+            <div className="container mt-8 space-y-8">
                 {/* Interactive At-a-Glance Summary Matrix */}
                 {(() => {
                     let totalStops = 0;
@@ -445,43 +527,52 @@ export default function ItineraryClient({ itinerary }: ItineraryClientProps) {
                     });
 
                     return (
-                        <div className={styles.summaryMatrixCard}>
-                            <div className={styles.summaryMatrixHeader}>
-                                <h3>📋 Itinerary Overview at a Glance</h3>
-                                <div className={styles.summaryStats}>
-                                    <span className={styles.statBadge}>⏱ {itinerary.duration}</span>
-                                    <span className={styles.statBadge}>📍 {totalStops} Total Stops</span>
-                                    <span className={styles.statBadge}>🛕 {totalTirths} Tirths</span>
+                        <Card className="gap-0 py-0 print:break-inside-avoid print:shadow-none">
+                            <div className="flex flex-col gap-3 border-b bg-secondary/40 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
+                                <h3 className="inline-flex items-center gap-2 text-lg font-semibold sm:text-xl">
+                                    <ClipboardList className="size-5 text-primary" /> Itinerary Overview at a Glance
+                                </h3>
+                                <div className="flex flex-wrap gap-2">
+                                    <Badge variant="outline" className="h-6 bg-card px-2.5">
+                                        <Clock /> {itinerary.duration}
+                                    </Badge>
+                                    <Badge variant="outline" className="h-6 bg-card px-2.5">
+                                        <MapPin /> {totalStops} Total Stops
+                                    </Badge>
+                                    <Badge variant="outline" className="h-6 bg-card px-2.5">
+                                        <Landmark /> {totalTirths} Tirths
+                                    </Badge>
                                 </div>
                             </div>
-                            
-                            <div className={styles.summaryTableWrapper}>
-                                <table className={styles.summaryTable}>
-                                    <thead>
+
+                            <div className="overflow-x-auto">
+                                <table className="w-full min-w-[40rem] text-left text-sm">
+                                    <thead className="bg-muted/60 text-xs tracking-wide text-muted-foreground uppercase">
                                         <tr>
-                                            <th style={{ width: '90px' }}>Day</th>
-                                            <th>Places Covered (Click to Jump)</th>
-                                            <th style={{ width: '180px' }}>Night Stay / End Stop</th>
+                                            <th className="w-24 px-4 py-3 font-semibold">Day</th>
+                                            <th className="px-4 py-3 font-semibold">Places Covered (Click to Jump)</th>
+                                            <th className="w-48 px-4 py-3 font-semibold">Night Stay / End Stop</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody className="divide-y">
                                         {daysToRender.map((day, dayIndex) => {
                                             const lastStop = day.stops[day.stops.length - 1];
                                             const dharmshalaStop = lastStop && (lastStop.type === 'Dharmshala' || lastStop.facilities?.includes('Dharmshala')) ? lastStop : null;
                                             const isLastDay = dayIndex === daysToRender.length - 1;
 
                                             return (
-                                                <tr key={day.day}>
-                                                    <td className={styles.dayCell}>
-                                                        <strong>Day {day.day}</strong>
-                                                        <span className={styles.stopCountText}>{day.stops.length} stops</span>
+                                                <tr key={day.day} className="align-top">
+                                                    <td className="px-4 py-3">
+                                                        <strong className="block font-heading text-base">Day {day.day}</strong>
+                                                        <span className="text-xs text-muted-foreground">{day.stops.length} stops</span>
                                                     </td>
-                                                    <td>
-                                                        <div className={styles.chipsContainer}>
+                                                    <td className="px-4 py-3">
+                                                        <div className="flex flex-wrap gap-1.5">
                                                             {day.stops.map((stop, stopIndex) => (
                                                                 <button
                                                                     key={stopIndex}
-                                                                    className={styles.stopChip}
+                                                                    type="button"
+                                                                    className="inline-flex items-center gap-1.5 rounded-full border bg-card py-1 pr-3 pl-1 text-xs font-medium transition-colors hover:border-primary/50 hover:bg-accent print:border-border"
                                                                     onClick={() => {
                                                                         const el = document.getElementById(`stop-${dayIndex}-${stopIndex}`);
                                                                         if (el) {
@@ -490,27 +581,29 @@ export default function ItineraryClient({ itinerary }: ItineraryClientProps) {
                                                                     }}
                                                                     title={`Click to jump to ${stop.name}`}
                                                                 >
-                                                                    <span className={styles.chipNum}>{stopIndex + 1}</span>
-                                                                    <span className={styles.chipName}>{stop.name}</span>
+                                                                    <span className="grid size-5 place-items-center rounded-full bg-primary/15 text-[0.65rem] font-bold text-primary">
+                                                                        {stopIndex + 1}
+                                                                    </span>
+                                                                    <span>{stop.name}</span>
                                                                 </button>
                                                             ))}
                                                         </div>
                                                     </td>
-                                                    <td className={styles.stayCell}>
+                                                    <td className="px-4 py-3">
                                                         {isLastDay && lastStop ? (
-                                                            <div className={styles.endStopBadge} title="End of Journey / Final Stop">
-                                                                <span>🏁 {lastStop.name}</span>
-                                                            </div>
+                                                            <span className="inline-flex items-center gap-1.5 rounded-lg bg-maroon/10 px-2.5 py-1 text-xs font-medium text-maroon" title="End of Journey / Final Stop">
+                                                                <Flag className="size-3.5 shrink-0" /> {lastStop.name}
+                                                            </span>
                                                         ) : dharmshalaStop ? (
-                                                            <div className={styles.stayBadge} title="Night Stay Dharmshala Available">
-                                                                <span>🏨 {dharmshalaStop.name}</span>
-                                                            </div>
+                                                            <span className="inline-flex items-center gap-1.5 rounded-lg bg-success/10 px-2.5 py-1 text-xs font-medium text-success" title="Night Stay Dharmshala Available">
+                                                                <BedDouble className="size-3.5 shrink-0" /> {dharmshalaStop.name}
+                                                            </span>
                                                         ) : lastStop ? (
-                                                            <div className={styles.endStopBadge} title="End of Day / Final Stop">
-                                                                <span>📍 {lastStop.name}</span>
-                                                            </div>
+                                                            <span className="inline-flex items-center gap-1.5 rounded-lg bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground" title="End of Day / Final Stop">
+                                                                <MapPin className="size-3.5 shrink-0" /> {lastStop.name}
+                                                            </span>
                                                         ) : (
-                                                            <span className={styles.mutedText}>—</span>
+                                                            <span className="text-muted-foreground">—</span>
                                                         )}
                                                     </td>
                                                 </tr>
@@ -519,277 +612,323 @@ export default function ItineraryClient({ itinerary }: ItineraryClientProps) {
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
+                        </Card>
                     );
                 })()}
 
-                <div className={styles.travelContext}>
-                    <div className={styles.locationsRow}>
-                        <div className={styles.inputGroup}>
-                            <label htmlFor="startLocation">📍 My Starting Location</label>
-                            <div className={styles.inputWrapper}>
-                                <input
+                <Card className="print:hidden">
+                    <CardContent className="grid gap-6 sm:grid-cols-2">
+                        <div className="space-y-2">
+                            <Label htmlFor="startLocation" className="gap-1.5">
+                                <Navigation className="size-4 text-primary" /> My Starting Location
+                            </Label>
+                            <div className="relative">
+                                <Input
                                     type="text"
                                     id="startLocation"
                                     value={startLocation}
                                     onChange={(e) => handleStartLocationChange(e.target.value)}
                                     placeholder="e.g. Bangalore"
-                                    className={styles.input}
+                                    className="h-10 pr-10"
                                 />
-                                <div className={styles.inputActions}>
+                                <div className="absolute inset-y-0 right-1 flex items-center">
                                     {!startLocation && (
-                                        <button
+                                        <Button
+                                            variant="ghost"
+                                            size="icon"
                                             onClick={handleUseMyLocationForStart}
-                                            className={styles.locationBtn}
                                             title="Use my current location"
+                                            aria-label="Use my current location"
                                         >
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                <circle cx="12" cy="12" r="3"></circle>
-                                                <path d="M12 2v3m0 14v3M2 12h3m14 0h3"></path>
-                                            </svg>
-                                        </button>
+                                            <LocateFixed className="text-primary" />
+                                        </Button>
                                     )}
                                     {startLocation && (
-                                        <button
+                                        <Button
+                                            variant="ghost"
+                                            size="icon"
                                             onClick={() => handleStartLocationChange('')}
-                                            className={styles.clearBtn}
                                             title="Clear location"
+                                            aria-label="Clear location"
                                         >
-                                            ×
-                                        </button>
+                                            <X />
+                                        </Button>
                                     )}
                                 </div>
                             </div>
-                            <small>Directions for the first stop will start from here.</small>
-                            {showHint && (
-                                <div className={styles.locationHint}>
-                                    💡 <strong>Hint:</strong> You can change your start & end cities here or click the GPS icon to use your current location.
-                                    <button onClick={dismissHint} className={styles.dismissHintBtn}>Got it</button>
-                                </div>
-                            )}
+                            <p className="text-xs text-muted-foreground">Directions for the first stop will start from here.</p>
                         </div>
 
-                        <div className={styles.inputGroup}>
-                            <label htmlFor="endLocation">🏁 My Ending Location</label>
-                            <div className={styles.inputWrapper}>
-                                <input
+                        <div className="space-y-2">
+                            <Label htmlFor="endLocation" className="gap-1.5">
+                                <Flag className="size-4 text-primary" /> My Ending Location
+                            </Label>
+                            <div className="relative">
+                                <Input
                                     type="text"
                                     id="endLocation"
                                     value={endLocation}
                                     onChange={(e) => handleEndLocationChange(e.target.value)}
                                     placeholder="e.g. Bangalore"
-                                    className={styles.input}
+                                    className="h-10 pr-10"
                                 />
-                                <div className={styles.inputActions}>
+                                <div className="absolute inset-y-0 right-1 flex items-center">
                                     {!endLocation && (
-                                        <button
+                                        <Button
+                                            variant="ghost"
+                                            size="icon"
                                             onClick={handleUseMyLocationForEnd}
-                                            className={styles.locationBtn}
                                             title="Use my current location"
+                                            aria-label="Use my current location"
                                         >
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                <circle cx="12" cy="12" r="3"></circle>
-                                                <path d="M12 2v3m0 14v3M2 12h3m14 0h3"></path>
-                                            </svg>
-                                        </button>
+                                            <LocateFixed className="text-primary" />
+                                        </Button>
                                     )}
                                     {endLocation && (
-                                        <button
+                                        <Button
+                                            variant="ghost"
+                                            size="icon"
                                             onClick={() => handleEndLocationChange('')}
-                                            className={styles.clearBtn}
                                             title="Clear location"
+                                            aria-label="Clear location"
                                         >
-                                            ×
-                                        </button>
+                                            <X />
+                                        </Button>
                                     )}
                                 </div>
                             </div>
-                            <small>Return directions from the final stop will end here.</small>
+                            <p className="text-xs text-muted-foreground">Return directions from the final stop will end here.</p>
                         </div>
-                    </div>
-                </div>
-            </div>
 
-            <div className={styles.timeline}>
-                {daysToRender.map((day, dayIndex) => {
-                    const prevDayStops = dayIndex > 0 ? daysToRender[dayIndex - 1].stops : [];
-                    const lastStop = prevDayStops.length > 0 ? prevDayStops[prevDayStops.length - 1] : undefined;
-                    const previousDayLastStop = lastStop ? { name: lastStop.name, lat: lastStop.lat, lng: lastStop.lng } : undefined;
+                        {showHint && (
+                            <Alert className="border-gold/50 bg-accent/60 sm:col-span-2">
+                                <Lightbulb className="text-gold" />
+                                <AlertDescription className="flex flex-col gap-3 text-foreground sm:flex-row sm:items-center sm:justify-between">
+                                    <span>
+                                        <strong>Hint:</strong> You can change your start & end cities here or click the GPS icon to use your current location.
+                                    </span>
+                                    <Button size="sm" variant="outline" onClick={dismissHint} className="shrink-0">
+                                        Got it
+                                    </Button>
+                                </AlertDescription>
+                            </Alert>
+                        )}
+                    </CardContent>
+                </Card>
 
-                    return (
-                        <div key={day.day} className={styles.dayBlock}>
-                            <h2 className={styles.dayTitle}>Day {day.day}</h2>
-                            <MapEmbed
-                                day={day.day}
-                                stops={day.stops}
-                                states={itinerary.states}
-                                previousDayLastStop={previousDayLastStop}
-                                startLocation={dayIndex === 0 ? startLocation : undefined}
-                                endLocation={dayIndex === daysToRender.length - 1 ? endLocation : undefined}
-                            />
-                            <div className={styles.stopsList}>
-                                {day.stops.map((stop, index) => {
-                                    // Determine origin for directions
-                                    let origin = '';
-                                    if (dayIndex === 0 && index === 0) {
-                                        origin = startLocation || 'My+Location';
-                                    } else if (index === 0 && previousDayLastStop) {
-                                        origin = previousDayLastStop.lat && previousDayLastStop.lng 
-                                            ? `${previousDayLastStop.lat},${previousDayLastStop.lng}`
-                                            : `${previousDayLastStop.name}, ${itinerary.states[0]}`;
-                                    } else {
-                                        const prevStop = day.stops[index - 1];
-                                        origin = prevStop.lat && prevStop.lng
-                                            ? `${prevStop.lat},${prevStop.lng}`
-                                            : `${prevStop.name}, ${itinerary.states[0]}`;
-                                    }
+                <div className="space-y-12">
+                    {daysToRender.map((day, dayIndex) => {
+                        const prevDayStops = dayIndex > 0 ? daysToRender[dayIndex - 1].stops : [];
+                        const lastStop = prevDayStops.length > 0 ? prevDayStops[prevDayStops.length - 1] : undefined;
+                        const previousDayLastStop = lastStop ? { name: lastStop.name, lat: lastStop.lat, lng: lastStop.lng } : undefined;
 
-                                    const dest = stop.lat && stop.lng
-                                        ? `${stop.lat},${stop.lng}`
-                                        : `${stop.name}, ${itinerary.states[0]}`;
-                                    
-                                    const directionsUrl = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(dest)}`;
+                        return (
+                            <section key={day.day}>
+                                <div className="flex items-center gap-4">
+                                    <span className="grid size-12 shrink-0 place-items-center rounded-full bg-gradient-to-br from-primary to-maroon font-heading text-lg font-semibold text-primary-foreground shadow-md ring-4 ring-gold/25">
+                                        {day.day}
+                                    </span>
+                                    <h2 className="text-2xl font-semibold sm:text-3xl">Day {day.day}</h2>
+                                    <span className="h-px flex-1 bg-gradient-to-r from-gold/60 to-transparent" />
+                                </div>
 
-                                    return (
-                                        <div key={index} id={`stop-${dayIndex}-${index}`} className={styles.stopCard}>
-                                            {isEditing && (
-                                                <div className={styles.editControls}>
-                                                    <button onClick={() => moveStop(dayIndex, index, 'up')} disabled={index === 0} title="Move Up">⬆️</button>
-                                                    <button onClick={() => moveStop(dayIndex, index, 'down')} disabled={index === day.stops.length - 1} title="Move Down">⬇️</button>
-                                                    <button onClick={() => moveStopDay(dayIndex, index, 'prev')} disabled={dayIndex === 0} title="Move to Previous Day">⬅️</button>
-                                                    <button onClick={() => moveStopDay(dayIndex, index, 'next')} disabled={dayIndex === daysToRender.length - 1} title="Move to Next Day">➡️</button>
-                                                    <button onClick={() => removeStop(dayIndex, index)} title="Remove Stop" className={styles.removeBtn}>❌</button>
-                                                </div>
-                                            )}
-                                            <div className={styles.stopHeader}>
-                                                <h3 className={styles.stopName}>
-                                                    {index + 1}. {stop.name}
-                                                </h3>
-                                                <span className={styles.stopType}>{stop.type}</span>
-                                            </div>
+                                <MapEmbed
+                                    day={day.day}
+                                    stops={day.stops}
+                                    states={itinerary.states}
+                                    previousDayLastStop={previousDayLastStop}
+                                    startLocation={dayIndex === 0 ? startLocation : undefined}
+                                    endLocation={dayIndex === daysToRender.length - 1 ? endLocation : undefined}
+                                />
 
-                                            {stop.facilities?.length > 0 && (
-                                                <div className={styles.facilities}>
-                                                    {stop.facilities.map((fac: string) => (
-                                                        <span key={fac} className={styles.facilityTag}>
-                                                            {fac === 'Bhojanshala' ? '🍽️' : '🏨'} {fac}
-                                                        </span>
-                                                    ))}
-                                                </div>
-                                            )}
+                                <ol className="relative space-y-4 border-l-2 border-dashed border-gold/40 pl-6 sm:ml-6 sm:pl-8">
+                                    {day.stops.map((stop, index) => {
+                                        // Determine origin for directions
+                                        let origin = '';
+                                        if (dayIndex === 0 && index === 0) {
+                                            origin = startLocation || 'My+Location';
+                                        } else if (index === 0 && previousDayLastStop) {
+                                            origin = previousDayLastStop.lat && previousDayLastStop.lng
+                                                ? `${previousDayLastStop.lat},${previousDayLastStop.lng}`
+                                                : `${previousDayLastStop.name}, ${itinerary.states[0]}`;
+                                        } else {
+                                            const prevStop = day.stops[index - 1];
+                                            origin = prevStop.lat && prevStop.lng
+                                                ? `${prevStop.lat},${prevStop.lng}`
+                                                : `${prevStop.name}, ${itinerary.states[0]}`;
+                                        }
 
-                                            <p className={styles.stopDescription}>{stop.description || stop.tirth?.introText}</p>
+                                        const dest = stop.lat && stop.lng
+                                            ? `${stop.lat},${stop.lng}`
+                                            : `${stop.name}, ${itinerary.states[0]}`;
 
-                                            {stop.tirth && stop.tirth.contacts && stop.tirth.contacts.length > 0 && (
-                                                <div className={styles.contactsAccordion}>
-                                                    <button 
-                                                        className={styles.accordionToggle} 
-                                                        onClick={() => toggleContacts(`${dayIndex}-${index}`)}
-                                                    >
-                                                        <span>📞 Contact Information</span>
-                                                        <span className={styles.chevron}>
-                                                            {expandedContacts[`${dayIndex}-${index}`] ? '▲' : '▼'}
-                                                        </span>
-                                                    </button>
-                                                    
-                                                    {expandedContacts[`${dayIndex}-${index}`] && (
-                                                        <div className={styles.contactsContent}>
-                                                            <div className={styles.contactsList}>
-                                                                {stop.tirth.contacts.map((contact: any, i: number) => (
-                                                                    <div key={i} className={styles.contactItem}>
-                                                                        <span className={styles.contactType}>{contact.type} ({contact.name})</span>
-                                                                        <a href={`tel:${contact.number}`} className={styles.contactNumber}>{contact.number}</a>
-                                                                    </div>
+                                        const directionsUrl = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(dest)}`;
+                                        const TypeIcon = stopTypeIcon(stop.type);
+                                        const contactsKey = `${dayIndex}-${index}`;
+                                        const contactsOpen = !!expandedContacts[contactsKey];
+
+                                        return (
+                                            <li key={index} id={`stop-${dayIndex}-${index}`} className="relative scroll-mt-24">
+                                                <span className="absolute top-5 -left-[2.4rem] grid size-7 place-items-center rounded-full border-2 border-gold/60 bg-card text-xs font-bold text-primary sm:-left-[2.9rem]">
+                                                    {index + 1}
+                                                </span>
+                                                <Card className="gap-4 transition-shadow hover:shadow-md print:break-inside-avoid print:shadow-none">
+                                                    <CardContent className="space-y-4">
+                                                        {isEditing && (
+                                                            <div className="flex flex-wrap gap-1 rounded-lg border border-dashed bg-muted/50 p-1.5 print:hidden">
+                                                                <Button variant="ghost" size="icon" onClick={() => moveStop(dayIndex, index, 'up')} disabled={index === 0} title="Move Up" aria-label="Move Up">
+                                                                    <ArrowUp />
+                                                                </Button>
+                                                                <Button variant="ghost" size="icon" onClick={() => moveStop(dayIndex, index, 'down')} disabled={index === day.stops.length - 1} title="Move Down" aria-label="Move Down">
+                                                                    <ArrowDown />
+                                                                </Button>
+                                                                <Button variant="ghost" size="icon" onClick={() => moveStopDay(dayIndex, index, 'prev')} disabled={dayIndex === 0} title="Move to Previous Day" aria-label="Move to Previous Day">
+                                                                    <ArrowLeft />
+                                                                </Button>
+                                                                <Button variant="ghost" size="icon" onClick={() => moveStopDay(dayIndex, index, 'next')} disabled={dayIndex === daysToRender.length - 1} title="Move to Next Day" aria-label="Move to Next Day">
+                                                                    <ArrowRight />
+                                                                </Button>
+                                                                <Button variant="destructive" size="icon" className="ml-auto" onClick={() => removeStop(dayIndex, index)} title="Remove Stop" aria-label="Remove Stop">
+                                                                    <Trash2 />
+                                                                </Button>
+                                                            </div>
+                                                        )}
+
+                                                        <div className="flex flex-wrap items-start justify-between gap-3">
+                                                            <h3 className="text-xl font-semibold">
+                                                                {index + 1}. {stop.name}
+                                                            </h3>
+                                                            <Badge variant="outline" className="h-6 gap-1 border-primary/30 bg-primary/10 px-2.5 text-primary">
+                                                                <TypeIcon /> {stop.type}
+                                                            </Badge>
+                                                        </div>
+
+                                                        {stop.facilities?.length > 0 && (
+                                                            <div className="flex flex-wrap gap-2">
+                                                                {stop.facilities.map((fac: string) => (
+                                                                    <Badge key={fac} variant="secondary" className="h-6 px-2.5">
+                                                                        {fac === 'Bhojanshala' ? <Utensils /> : <BedDouble />} {fac}
+                                                                    </Badge>
                                                                 ))}
                                                             </div>
-                                                            <div className={styles.contactFooter}>
-                                                                <span className={styles.verifiedBadge}>✓ verified</span>
-                                                                <a 
-                                                                    href={`https://docs.google.com/forms/d/e/1FAIpQLSfIfYSg3E1d1XI8lDNYkxVZAu_d3w0OJmFE4ea0cfKezoAhNg/viewform?usp=pp_url&entry.900429225=${encodeURIComponent(stop.name)}&entry.340669516=${encodeURIComponent(stop.tirth.id)}&entry.837366253=${encodeURIComponent(stop.type)}`}
-                                                                    target="_blank"
-                                                                    rel="noopener noreferrer"
-                                                                    className={styles.suggestEdit}
+                                                        )}
+
+                                                        <p className="leading-relaxed text-muted-foreground">{stop.description || stop.tirth?.introText}</p>
+
+                                                        {stop.tirth && stop.tirth.contacts && stop.tirth.contacts.length > 0 && (
+                                                            <div className="overflow-hidden rounded-xl border">
+                                                                <button
+                                                                    type="button"
+                                                                    className="flex w-full items-center justify-between gap-2 bg-muted/50 px-4 py-2.5 text-sm font-semibold transition-colors hover:bg-muted"
+                                                                    onClick={() => toggleContacts(contactsKey)}
+                                                                    aria-expanded={contactsOpen}
                                                                 >
-                                                                    Suggest Edit
-                                                                </a>
+                                                                    <span className="inline-flex items-center gap-2">
+                                                                        <Phone className="size-4 text-primary" /> Contact Information
+                                                                    </span>
+                                                                    <ChevronDown className={`size-4 transition-transform print:hidden ${contactsOpen ? 'rotate-180' : ''}`} />
+                                                                </button>
+
+                                                                {contactsOpen && (
+                                                                    <div className="space-y-3 p-4">
+                                                                        <div className="space-y-2">
+                                                                            {stop.tirth.contacts.map((contact: any, i: number) => (
+                                                                                <div key={i} className="flex flex-wrap items-center justify-between gap-2 text-sm">
+                                                                                    <span className="text-muted-foreground">{contact.type} ({contact.name})</span>
+                                                                                    <a href={`tel:${contact.number}`} className="font-semibold text-primary hover:underline">
+                                                                                        {contact.number}
+                                                                                    </a>
+                                                                                </div>
+                                                                            ))}
+                                                                        </div>
+                                                                        <div className="flex items-center justify-between border-t pt-3 text-xs">
+                                                                            <span className="inline-flex items-center gap-1 font-medium text-success">
+                                                                                <BadgeCheck className="size-3.5" /> verified
+                                                                            </span>
+                                                                            <a
+                                                                                href={`https://docs.google.com/forms/d/e/1FAIpQLSfIfYSg3E1d1XI8lDNYkxVZAu_d3w0OJmFE4ea0cfKezoAhNg/viewform?usp=pp_url&entry.900429225=${encodeURIComponent(stop.name)}&entry.340669516=${encodeURIComponent(stop.tirth.id)}&entry.837366253=${encodeURIComponent(stop.type)}`}
+                                                                                target="_blank"
+                                                                                rel="noopener noreferrer"
+                                                                                className="text-muted-foreground underline-offset-4 hover:text-primary hover:underline print:hidden"
+                                                                            >
+                                                                                Suggest Edit
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                )}
                                                             </div>
+                                                        )}
+
+                                                        <div className="flex flex-wrap gap-2 print:hidden">
+                                                            <Button asChild size="sm" className="h-8 gap-1.5 px-3">
+                                                                <a href={directionsUrl} target="_blank" rel="noopener noreferrer">
+                                                                    <Navigation /> Get Directions
+                                                                </a>
+                                                            </Button>
+                                                            {dayIndex === daysToRender.length - 1 && index === day.stops.length - 1 && (
+                                                                <Button asChild size="sm" variant="secondary" className="h-8 gap-1.5 px-3">
+                                                                    <a
+                                                                        href={`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(dest)}&destination=${encodeURIComponent(endLocation || 'My+Location')}`}
+                                                                        target="_blank"
+                                                                        rel="noopener noreferrer"
+                                                                    >
+                                                                        <Undo2 /> Return Directions
+                                                                    </a>
+                                                                </Button>
+                                                            )}
+                                                            {stop.type === 'Dharmshala' && stop.tirth ? (
+                                                                <Button asChild size="sm" variant="outline" className="h-8 gap-1.5 px-3">
+                                                                    <Link href={`/dharmshala/${stop.tirth.id}`}>
+                                                                        <BedDouble /> View Dharmshala
+                                                                    </Link>
+                                                                </Button>
+                                                            ) : (['Tirth', 'Temple'].includes(stop.type) && stop.tirth) ? (
+                                                                <Button asChild size="sm" variant="outline" className="h-8 gap-1.5 px-3">
+                                                                    <Link href={`/tirth/${stop.tirth.id}`}>
+                                                                        <Landmark /> View Place
+                                                                    </Link>
+                                                                </Button>
+                                                            ) : (
+                                                                <Button asChild size="sm" variant="outline" className="h-8 gap-1.5 px-3">
+                                                                    <a href={stop.mapsLink} target="_blank" rel="noopener noreferrer">
+                                                                        <ExternalLink /> View on Map
+                                                                    </a>
+                                                                </Button>
+                                                            )}
                                                         </div>
-                                                    )}
-                                                </div>
-                                            )}
-
-                                            <div className={styles.stopActions}>
-                                                <a
-                                                    href={directionsUrl}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className={styles.mapLink}
-                                                >
-                                                    Get Directions ↗
-                                                </a>
-                                                {dayIndex === daysToRender.length - 1 && index === day.stops.length - 1 && (
-                                                    <a
-                                                        href={`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(dest)}&destination=${encodeURIComponent(endLocation || 'My+Location')}`}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className={styles.returnLink}
-                                                    >
-                                                        Return Directions ↗
-                                                    </a>
-                                                )}
-                                                {stop.type === 'Dharmshala' && stop.tirth ? (
-                                                    <Link 
-                                                        href={`/dharmshala/${stop.tirth.id}`}
-                                                        className={styles.viewLink}
-                                                    >
-                                                        View Dharmshala
-                                                    </Link>
-                                                ) : (['Tirth', 'Temple'].includes(stop.type) && stop.tirth) ? (
-                                                    <Link 
-                                                        href={`/tirth/${stop.tirth.id}`}
-                                                        className={styles.viewLink}
-                                                    >
-                                                        View Place
-                                                    </Link>
-                                                ) : (
-                                                    <a
-                                                        href={stop.mapsLink}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className={styles.viewLink}
-                                                    >
-                                                        View on Map ↗
-                                                    </a>
-                                                )}
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </div>
-                    );
-                })}
-            </div>
-
-            {isEditing && removedStops.length > 0 && (
-                <div className={styles.removedSection}>
-                    <h2 className={styles.removedTitle}>🗑️ Removed Places</h2>
-                    <p className={styles.removedSubtitle}>Click "Add Back" to restore these places to the end of your itinerary.</p>
-                    <div className={styles.removedStopsList}>
-                        {removedStops.map((stop, idx) => (
-                            <div key={idx} className={styles.removedStopCard}>
-                                <div className={styles.removedStopInfo}>
-                                    <h4 className={styles.stopName}>{stop.name}</h4>
-                                    <span className={styles.stopType}>{stop.type}</span>
-                                </div>
-                                <button onClick={() => restoreStop(stop)} className={styles.restoreBtn}>
-                                    ➕ Add Back
-                                </button>
-                            </div>
-                        ))}
-                    </div>
+                                                    </CardContent>
+                                                </Card>
+                                            </li>
+                                        );
+                                    })}
+                                </ol>
+                            </section>
+                        );
+                    })}
                 </div>
-            )}
+
+                {isEditing && removedStops.length > 0 && (
+                    <section className="rounded-2xl border-2 border-dashed bg-muted/40 p-5 sm:p-8 print:hidden">
+                        <h2 className="inline-flex items-center gap-2 text-2xl font-semibold">
+                            <Trash2 className="size-5 text-destructive" /> Removed Places
+                        </h2>
+                        <p className="mt-1 mb-5 text-sm text-muted-foreground">Click &quot;Add Back&quot; to restore these places to the end of your itinerary.</p>
+                        <div className="space-y-3">
+                            {removedStops.map((stop, idx) => (
+                                <div key={idx} className="flex flex-wrap items-center justify-between gap-3 rounded-xl border bg-card px-4 py-3 shadow-xs">
+                                    <div className="flex flex-wrap items-center gap-3">
+                                        <h4 className="font-heading text-lg font-semibold">{stop.name}</h4>
+                                        <Badge variant="secondary">{stop.type}</Badge>
+                                    </div>
+                                    <Button size="sm" variant="outline" className="gap-1.5 border-success/50 text-success hover:bg-success/10 hover:text-success" onClick={() => restoreStop(stop)}>
+                                        <Plus /> Add Back
+                                    </Button>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+                )}
+            </div>
         </div>
     );
 }

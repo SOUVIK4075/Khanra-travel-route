@@ -3,7 +3,13 @@
 import { useState, useRef, useEffect } from 'react';
 import { useChat } from '@ai-sdk/react';
 import ReactMarkdown from 'react-markdown';
-import styles from './ChatAssistant.module.css';
+import { MessageCircle, SendHorizontal, Sparkles, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { cn } from '@/lib/utils';
+
+const markdownClass =
+    '[&_a]:font-medium [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-2 [&_ol]:my-1.5 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:my-1 first:[&_p]:mt-0 last:[&_p]:mb-0 [&_strong]:font-semibold [&_ul]:my-1.5 [&_ul]:list-disc [&_ul]:pl-5 [&_li]:my-0.5 [&_h1]:text-base [&_h2]:text-base [&_h3]:text-sm [&_h1]:font-semibold [&_h2]:font-semibold [&_h3]:font-semibold';
 
 export default function ChatAssistant() {
     const [isOpen, setIsOpen] = useState(false);
@@ -18,34 +24,52 @@ export default function ChatAssistant() {
     }, [messages]);
 
     return (
-        <div className={styles.chatWrapper}>
+        <div data-print="hide" className="fixed right-4 bottom-4 z-50 flex flex-col items-end gap-3 sm:right-6 sm:bottom-6">
             {isOpen && (
-                <div className={styles.chatWindow}>
-                    <div className={styles.header}>
-                        <div className={styles.headerTitle}>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--primary)' }}>
-                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                            </svg>
-                            <h3>Khanra Travel AI</h3>
+                <div
+                    role="dialog"
+                    aria-label="Khanra Travel AI assistant"
+                    className="flex h-[min(34rem,calc(100dvh-7rem))] w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl border bg-card shadow-2xl ring-1 ring-gold/20 animate-in fade-in-0 slide-in-from-bottom-4 sm:w-96"
+                >
+                    <div className="flex items-center justify-between gap-3 bg-gradient-to-r from-primary via-primary to-maroon px-4 py-3 text-primary-foreground">
+                        <div className="flex items-center gap-2.5">
+                            <span className="grid size-8 place-items-center rounded-full bg-white/20">
+                                <Sparkles className="size-4" />
+                            </span>
+                            <div className="leading-tight">
+                                <h3 className="font-heading text-base font-semibold">Khanra Travel AI</h3>
+                                <p className="text-xs opacity-85">Your Tirth Yatra guide</p>
+                            </div>
                         </div>
-                        <button className={styles.closeButton} onClick={() => setIsOpen(false)}>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <line x1="18" y1="6" x2="6" y2="18"></line>
-                                <line x1="6" y1="6" x2="18" y2="18"></line>
-                            </svg>
-                        </button>
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            aria-label="Close chat"
+                            className="text-primary-foreground hover:bg-white/15 hover:text-primary-foreground"
+                            onClick={() => setIsOpen(false)}
+                        >
+                            <X className="size-5" />
+                        </Button>
                     </div>
 
-                    <div className={styles.messagesContainer}>
+                    <div className="flex flex-1 flex-col gap-3 overflow-y-auto bg-background/60 p-4 text-sm leading-relaxed">
                         {messages.length === 0 && (
-                            <div className={styles.aiMessage}>
+                            <div className={cn('max-w-[85%] self-start rounded-2xl rounded-bl-sm border bg-card px-3.5 py-2.5', markdownClass)}>
                                 <ReactMarkdown>
-                                    Jai Jinendra! 🙏 I'm your Khanra Travel Assistant. I can help you plan your Tirth Yatra. Try asking "Plan a 5-day round trip from Bangalore", "How to reach Kundalpur from Nagpur?" or "Does sravanbelgola have dharmshala / bhojanshala?"
+                                    {`Jai Jinendra! 🙏 I'm your Khanra Travel Assistant. I can help you plan your Tirth Yatra. Try asking "Plan a 5-day round trip from Bangalore", "How to reach Kundalpur from Nagpur?" or "Does sravanbelgola have dharmshala / bhojanshala?"`}
                                 </ReactMarkdown>
                             </div>
                         )}
                         {messages.map((m: any) => (
-                            <div key={m.id} className={`${styles.message} ${m.role === 'user' ? styles.userMessage : styles.aiMessage}`}>
+                            <div
+                                key={m.id}
+                                className={cn(
+                                    'max-w-[85%] rounded-2xl px-3.5 py-2.5 break-words',
+                                    m.role === 'user'
+                                        ? 'self-end rounded-br-sm bg-primary text-primary-foreground'
+                                        : cn('self-start rounded-bl-sm border bg-card', markdownClass)
+                                )}
+                            >
                                 {m.role === 'user' ? (
                                     m.content
                                 ) : (
@@ -54,43 +78,47 @@ export default function ChatAssistant() {
                             </div>
                         ))}
                         {isLoading && (
-                            <div className={styles.typing}>AI is thinking...</div>
+                            <div className="flex items-center gap-2 self-start text-xs text-muted-foreground">
+                                <span className="flex gap-1">
+                                    <span className="size-1.5 animate-bounce rounded-full bg-primary [animation-delay:-0.3s]" />
+                                    <span className="size-1.5 animate-bounce rounded-full bg-primary [animation-delay:-0.15s]" />
+                                    <span className="size-1.5 animate-bounce rounded-full bg-primary" />
+                                </span>
+                                AI is thinking...
+                            </div>
                         )}
                         <div ref={messagesEndRef} />
                     </div>
 
-                    <form onSubmit={handleSubmit} className={styles.inputArea}>
-                        <input
-                            className={styles.input}
+                    <form onSubmit={handleSubmit} className="flex items-center gap-2 border-t bg-card p-3">
+                        <Input
+                            className="h-10 flex-1 rounded-full px-4"
                             value={input}
                             placeholder="Ask about Tirths or routes..."
                             onChange={handleInputChange}
+                            aria-label="Message"
                         />
-                        <button
+                        <Button
                             type="submit"
-                            className={styles.sendButton}
+                            size="icon-lg"
+                            className="size-10 rounded-full"
+                            aria-label="Send message"
                             disabled={isLoading || !(input || '').trim()}
                         >
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <line x1="22" y1="2" x2="11" y2="13"></line>
-                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                            </svg>
-                        </button>
+                            <SendHorizontal className="size-4" />
+                        </Button>
                     </form>
                 </div>
             )}
 
-            <button className={styles.chatButton} onClick={() => setIsOpen(!isOpen)}>
-                {isOpen ? (
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                ) : (
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                )}
+            <button
+                type="button"
+                aria-label={isOpen ? 'Close chat assistant' : 'Open chat assistant'}
+                aria-expanded={isOpen}
+                onClick={() => setIsOpen(!isOpen)}
+                className="grid size-14 place-items-center rounded-full bg-gradient-to-br from-primary to-maroon text-primary-foreground shadow-lg ring-4 ring-gold/25 transition hover:scale-105 hover:shadow-xl focus-visible:ring-ring/60 focus-visible:outline-none"
+            >
+                {isOpen ? <X className="size-6" /> : <MessageCircle className="size-6" />}
             </button>
         </div>
     );

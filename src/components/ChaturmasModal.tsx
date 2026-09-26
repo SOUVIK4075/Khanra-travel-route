@@ -1,11 +1,24 @@
+'use client';
+
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import styles from './ChaturmasModal.module.css';
+import { FileText, ScrollText, CarTaxiFront, ArrowRight } from 'lucide-react';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import Ornament from '@/components/site/Ornament';
 
 interface ChaturmasModalProps {
     isOpen?: boolean;
     onClose?: () => void;
 }
+
+const LINKS = [
+    { href: '/pdfs/karnataka-itinerary-en.pdf', icon: FileText, title: 'Karnataka Itineraries', sub: 'English Version', external: true },
+    { href: '/pdfs/karnataka-itinerary-hi.pdf', icon: ScrollText, title: 'कर्नाटक यात्रा मार्ग', sub: 'हिंदी संस्करण', external: true },
+    { href: '/pdfs/tamil-nadu-itinerary-en.pdf', icon: FileText, title: 'Tamil Nadu Itineraries', sub: 'English Version', external: true },
+    { href: '/pdfs/tamil-nadu-itinerary-hi.pdf', icon: ScrollText, title: 'तमिलनाडु यात्रा मार्ग', sub: 'हिंदी संस्करण', external: true },
+    { href: '/chaturmas-cabs?lang=en', icon: CarTaxiFront, title: 'Negotiated Cabs & Tours', sub: 'English Version', external: false },
+    { href: '/chaturmas-cabs?lang=hi', icon: CarTaxiFront, title: 'रियायती कैब और यात्रा दरें', sub: 'हिंदी संस्करण', external: false },
+];
 
 export default function ChaturmasModal({ isOpen: controlledIsOpen, onClose }: ChaturmasModalProps) {
     const [internalOpen, setInternalOpen] = useState(false);
@@ -34,76 +47,47 @@ export default function ChaturmasModal({ isOpen: controlledIsOpen, onClose }: Ch
         }
     };
 
-    if (!isVisible) return null;
-
     return (
-        <div className={styles.overlay} onClick={handleClose}>
-            <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-                <button className={styles.closeBtn} onClick={handleClose} aria-label="Close modal">×</button>
+        <Dialog open={isVisible} onOpenChange={(open) => { if (!open) handleClose(); }}>
+            <DialogContent className="max-h-[90dvh] gap-0 overflow-y-auto p-0 sm:max-w-2xl">
+                <DialogHeader className="bg-mandala items-center gap-3 border-b bg-secondary/60 px-6 pt-8 pb-6 text-center">
+                    <span className="text-3xl" aria-hidden>🙏</span>
+                    <DialogTitle className="font-heading text-xl leading-snug font-semibold sm:text-2xl">
+                        Welcome to All Yatris arriving for
+                        <br />
+                        <span className="text-gradient-saffron">Bengaluru Chaturmaas 2026</span>
+                    </DialogTitle>
+                    <DialogDescription className="font-heading text-base text-maroon dark:text-gold">
+                        (आत्म-सिलिकॉन वर्षायोग)
+                    </DialogDescription>
+                    <Ornament />
+                </DialogHeader>
 
-                <div className={styles.modalHeader}>
-                    <h2>🙏 Welcome to All Yatris arriving for<br />Bengaluru Chaturmaas 2026<br /><span className={styles.hindiTheme}>(आत्म-सिलिकॉन वर्षायोग)</span></h2>
+                <div className="grid gap-3 p-5 sm:grid-cols-2 sm:p-6">
+                    {LINKS.map(({ href, icon: Icon, title, sub, external }) => (
+                        <a
+                            key={href}
+                            href={href}
+                            {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                            className="group flex items-center gap-3 rounded-xl border bg-card p-3.5 transition hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-md focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+                        >
+                            <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-accent text-primary transition group-hover:bg-primary group-hover:text-primary-foreground">
+                                <Icon className="size-5" />
+                            </span>
+                            <span className="flex min-w-0 flex-col">
+                                <strong className="truncate text-sm font-semibold">{title}</strong>
+                                <span className="text-xs text-muted-foreground">{sub}</span>
+                            </span>
+                        </a>
+                    ))}
                 </div>
 
-                <div className={styles.modalContent}>
-                    <div className={styles.pdfLinks}>
-
-                        <a href="/pdfs/karnataka-itinerary-en.pdf" target="_blank" rel="noopener noreferrer" className={styles.pdfCard}>
-                            <div className={styles.pdfIcon}>📄</div>
-                            <div className={styles.pdfDetails}>
-                                <strong>Karnataka Itineraries</strong>
-                                <span>English Version</span>
-                            </div>
-                        </a>
-
-                        <a href="/pdfs/karnataka-itinerary-hi.pdf" target="_blank" rel="noopener noreferrer" className={styles.pdfCard}>
-                            <div className={styles.pdfIcon}>📜</div>
-                            <div className={styles.pdfDetails}>
-                                <strong>कर्नाटक यात्रा मार्ग</strong>
-                                <span>हिंदी संस्करण</span>
-                            </div>
-                        </a>
-
-                        <a href="/pdfs/tamil-nadu-itinerary-en.pdf" target="_blank" rel="noopener noreferrer" className={styles.pdfCard}>
-                            <div className={styles.pdfIcon}>📄</div>
-                            <div className={styles.pdfDetails}>
-                                <strong>Tamil Nadu Itineraries</strong>
-                                <span>English Version</span>
-                            </div>
-                        </a>
-
-                        <a href="/pdfs/tamil-nadu-itinerary-hi.pdf" target="_blank" rel="noopener noreferrer" className={styles.pdfCard}>
-                            <div className={styles.pdfIcon}>📜</div>
-                            <div className={styles.pdfDetails}>
-                                <strong>तमिलनाडु यात्रा मार्ग</strong>
-                                <span>हिंदी संस्करण</span>
-                            </div>
-                        </a>
-
-                        <a href="/chaturmas-cabs?lang=en" className={styles.pdfCard}>
-                            <div className={styles.pdfIcon}>🚖</div>
-                            <div className={styles.pdfDetails}>
-                                <strong>Negotiated Cabs & Tours</strong>
-                                <span>English Version</span>
-                            </div>
-                        </a>
-
-                        <a href="/chaturmas-cabs?lang=hi" className={styles.pdfCard}>
-                            <div className={styles.pdfIcon}>🚖</div>
-                            <div className={styles.pdfDetails}>
-                                <strong>रियायती कैब और यात्रा दरें</strong>
-                                <span>हिंदी संस्करण</span>
-                            </div>
-                        </a>
-                    </div>
+                <div className="flex justify-center border-t bg-muted/40 px-6 py-4">
+                    <Button size="lg" className="h-11 rounded-full px-6 text-base" onClick={handleClose}>
+                        Explore Khanra Travel <ArrowRight />
+                    </Button>
                 </div>
-
-                <div className={styles.modalFooter}>
-                    <button className={styles.exploreBtn} onClick={handleClose}>
-                        Explore Khanra Travel
-                    </button>
-                </div>
-            </div>
-        </div>
+            </DialogContent>
+        </Dialog>
     );
 }

@@ -3,7 +3,36 @@
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Head from 'next/head';
-import styles from './page.module.css';
+import {
+  ArrowLeft, Bus, Download, Globe, Info, Lightbulb, MapPin, Plane, Sparkles, Star, TrainFront,
+  type LucideIcon,
+} from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import Ornament from '@/components/site/Ornament';
+import { cn } from '@/lib/utils';
+
+function Section({ icon: Icon, title, children, className }: { icon: LucideIcon; title: React.ReactNode; children: React.ReactNode; className?: string }) {
+  return (
+    <section className={cn('rounded-2xl border bg-card p-5 shadow-sm sm:p-7', className)}>
+      <h3 className="mb-4 flex items-start gap-3 text-xl font-semibold sm:text-2xl">
+        <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-accent text-primary">
+          <Icon className="size-5" />
+        </span>
+        <span className="pt-0.5">{title}</span>
+      </h3>
+      <div className="space-y-4 leading-relaxed text-foreground/90">{children}</div>
+    </section>
+  );
+}
+
+function OptionBlock({ children }: { children: React.ReactNode }) {
+  return <div className="rounded-xl border-l-4 border-primary bg-muted/50 p-4 sm:p-5">{children}</div>;
+}
+
+function FareLine({ children }: { children: React.ReactNode }) {
+  return <p className="mt-3 inline-flex rounded-lg bg-primary/10 px-3 py-1.5 text-sm font-semibold text-primary">{children}</p>;
+}
 
 function TravelGuideContent() {
   const searchParams = useSearchParams();
@@ -113,197 +142,203 @@ function TravelGuideContent() {
   const pdfUrl = isHi ? '/pdfs/gyanoday-travel-guide-hi.pdf' : '/pdfs/gyanoday-travel-guide-en.pdf';
   const mapUrl = 'https://www.google.com/maps?cid=10167995298631462920';
 
-  const hubs = [
-    { id: 'flight', icon: '✈️', name: isHi ? 'हवाई अड्डा (BLR Airport)' : 'Airport (BLR)' },
-    { id: 'kr-puram', icon: '🚂', name: isHi ? 'KR पुरम स्टेशन' : 'KR Puram Station' },
-    { id: 'smvt', icon: '🚂', name: isHi ? 'SMVT टर्मिनल' : 'SMVT Terminal' },
-    { id: 'majestic', icon: '🚂', name: isHi ? 'मैजेस्टिक स्टेशन' : 'Majestic Station' },
-    { id: 'yesvantpur', icon: '🚂', name: isHi ? 'यशवंतपुर जंक्शन' : 'Yesvantpur Junction' },
-    { id: 'cantonment', icon: '🚂', name: isHi ? 'कैंटोनमेंट स्टेशन' : 'Cantonment Station' },
-    { id: 'bus', icon: '🚌', name: isHi ? 'बस स्टैंड (BMTC)' : 'Bus Station (BMTC)' }
+  const hubs: { id: string; icon: LucideIcon; name: string }[] = [
+    { id: 'flight', icon: Plane, name: isHi ? 'हवाई अड्डा (BLR Airport)' : 'Airport (BLR)' },
+    { id: 'kr-puram', icon: TrainFront, name: isHi ? 'KR पुरम स्टेशन' : 'KR Puram Station' },
+    { id: 'smvt', icon: TrainFront, name: isHi ? 'SMVT टर्मिनल' : 'SMVT Terminal' },
+    { id: 'majestic', icon: TrainFront, name: isHi ? 'मैजेस्टिक स्टेशन' : 'Majestic Station' },
+    { id: 'yesvantpur', icon: TrainFront, name: isHi ? 'यशवंतपुर जंक्शन' : 'Yesvantpur Junction' },
+    { id: 'cantonment', icon: TrainFront, name: isHi ? 'कैंटोनमेंट स्टेशन' : 'Cantonment Station' },
+    { id: 'bus', icon: Bus, name: isHi ? 'बस स्टैंड (BMTC)' : 'Bus Station (BMTC)' }
   ];
 
   const renderSelectedContent = () => {
     switch (selectedHub) {
       case 'flight':
         return (
-          <section className={styles.section}>
-            <h3 className={styles.sectionTitle}>✈️ {t.flightTitle}</h3>
-            <p className={styles.address} style={{ fontWeight: 600, color: 'var(--secondary)' }}>{t.flightSubtitle}</p>
-            <p className={styles.address}>{t.distTime}</p>
+          <Section icon={Plane} title={t.flightTitle}>
+            <div>
+              <p className="font-semibold">{t.flightSubtitle}</p>
+              <p className="text-muted-foreground">{t.distTime}</p>
+            </div>
 
-            <div className={styles.optionBlock}>
-              <h4 className={styles.optionTitle}>{t.flightOpt1} <span className={styles.recommended}>★ Recommended</span></h4>
+            <OptionBlock>
+              <h4 className="mb-2 flex flex-wrap items-center gap-2 text-lg font-semibold">
+                {t.flightOpt1}
+                <Badge className="bg-gold text-gold-foreground"><Star className="fill-current" /> Recommended</Badge>
+              </h4>
               <p>{t.flightOpt1Desc}</p>
-              <div style={{ marginTop: '0.75rem', padding: '0.75rem', background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '8px' }}>
-                <p style={{ margin: 0, fontSize: '0.9rem', color: '#166534', lineHeight: 1.5 }}>
-                  <strong style={{ display: 'block', marginBottom: '0.25rem' }}>{isHi ? '🎉 विशेष ऑफर:' : '🎉 Special Offer:'}</strong>
+              <div className="mt-3 rounded-lg border border-success/40 bg-success/10 p-3 text-sm">
+                <strong className="mb-1 flex items-center gap-1.5 text-success">
+                  <Sparkles className="size-4" /> {isHi ? 'विशेष ऑफर:' : 'Special Offer:'}
+                </strong>
+                <p>
                   {isHi ? 'Airport यात्रियों के लिए Aishwarya Cabs द्वारा विशेष एयरपोर्ट ड्रॉप/पिकअप (₹900 + toll) उपलब्ध है।' : 'Aishwarya Cabs offers a special fixed rate (₹900+toll) for airport travelers.'}
-                  <br />
-                  <a href="https://www.aishwaryacabs.in/" target="_blank" rel="noopener noreferrer" style={{ color: '#15803d', textDecoration: 'underline', fontWeight: 600, display: 'inline-block', marginTop: '0.25rem' }}>
-                    {isHi ? 'यहाँ बुक करें' : 'Book Here'}
-                  </a>
                 </p>
+                <a href="https://www.aishwaryacabs.in/" target="_blank" rel="noopener noreferrer" className="mt-1 inline-block font-semibold text-success underline underline-offset-2">
+                  {isHi ? 'यहाँ बुक करें' : 'Book Here'}
+                </a>
               </div>
-              <p className={styles.highlight} style={{ marginTop: '0.75rem' }}>{t.fareTime1}</p>
-            </div>
+              <FareLine>{t.fareTime1}</FareLine>
+            </OptionBlock>
 
-            <div className={styles.optionBlock}>
-              <h4 className={styles.optionTitle}>{t.flightOpt2}</h4>
+            <OptionBlock>
+              <h4 className="mb-2 text-lg font-semibold">{t.flightOpt2}</h4>
               <p>{t.flightOpt2Desc}</p>
-              <p className={styles.highlight}>{t.fareTime2}</p>
-            </div>
-          </section>
+              <FareLine>{t.fareTime2}</FareLine>
+            </OptionBlock>
+          </Section>
         );
       case 'kr-puram':
         return (
-          <section className={styles.section}>
-            <h3 className={styles.sectionTitle}>🚂 {t.krPuram}</h3>
-            <div className={styles.optionBlock}>
-              <p style={{ whiteSpace: 'pre-line' }}>{t.krPuramDesc}</p>
-            </div>
-          </section>
+          <Section icon={TrainFront} title={t.krPuram}>
+            <OptionBlock>
+              <p className="whitespace-pre-line">{t.krPuramDesc}</p>
+            </OptionBlock>
+          </Section>
         );
       case 'smvt':
         return (
-          <section className={styles.section}>
-            <h3 className={styles.sectionTitle}>🚂 {t.smvt}</h3>
-            <div className={styles.optionBlock}>
-              <p>{t.smvtDesc}</p>
-            </div>
-          </section>
+          <Section icon={TrainFront} title={t.smvt}>
+            <OptionBlock><p>{t.smvtDesc}</p></OptionBlock>
+          </Section>
         );
       case 'majestic':
         return (
-          <section className={styles.section}>
-            <h3 className={styles.sectionTitle}>🚂 {t.majestic}</h3>
-            <div className={styles.optionBlock}>
-              <p>{t.majesticDesc}</p>
-            </div>
-          </section>
+          <Section icon={TrainFront} title={t.majestic}>
+            <OptionBlock><p>{t.majesticDesc}</p></OptionBlock>
+          </Section>
         );
       case 'yesvantpur':
         return (
-          <section className={styles.section}>
-            <h3 className={styles.sectionTitle}>🚂 {t.yesvantpur}</h3>
-            <div className={styles.optionBlock}>
-              <p>{t.yesvantpurDesc}</p>
-            </div>
-          </section>
+          <Section icon={TrainFront} title={t.yesvantpur}>
+            <OptionBlock><p>{t.yesvantpurDesc}</p></OptionBlock>
+          </Section>
         );
       case 'cantonment':
         return (
-          <section className={styles.section}>
-            <h3 className={styles.sectionTitle}>🚂 {t.cantonment}</h3>
-            <div className={styles.optionBlock}>
-              <p>{t.cantonmentDesc}</p>
-            </div>
-          </section>
+          <Section icon={TrainFront} title={t.cantonment}>
+            <OptionBlock><p>{t.cantonmentDesc}</p></OptionBlock>
+          </Section>
         );
       case 'bus':
         return (
-          <section className={styles.section}>
-            <h3 className={styles.sectionTitle}>🚌 {t.busTitle}</h3>
+          <Section icon={Bus} title={t.busTitle}>
             <p>{t.busDesc}</p>
-          </section>
+          </Section>
         );
       default:
         return null;
     }
   };
 
+  const quickInfoRows = [
+    [t.airportLabel, t.airportVal],
+    [t.metroLabel, t.metroVal],
+    [t.railLabel, t.railVal],
+    [t.cabLabel, t.cabVal],
+    [t.autoLabel, t.autoVal],
+  ];
+
   return (
-    <div className={styles.container}>
+    <div className="pb-8">
       <Head>
         <title>{t.title} | Travel Guide</title>
       </Head>
 
-      <div className={styles.header}>
-        <div>
-          <h1 className={styles.title}>{t.title}</h1>
-          <h2 className={styles.subtitle}>{t.subtitle}</h2>
-          <p className={styles.address}>{t.address}</p>
-          <div className={styles.headerButtons}>
-            <a href={mapUrl} target="_blank" rel="noopener noreferrer" className={styles.mapsBtn}>
-              📍 {t.mapsBtn}
-            </a>
-            <a href={pdfUrl} target="_blank" rel="noopener noreferrer" className={styles.downloadBtn}>
-              📥 {t.downloadBtn}
-            </a>
-          </div>
-        </div>
-        <div className={styles.actions}>
-          <button onClick={toggleLang} className={styles.langToggle}>
-            🌐 {isHi ? 'Read in English' : 'हिंदी में पढ़ें'}
-          </button>
-        </div>
-      </div>
-
-      {!selectedHub ? (
-        <>
-          <h3 className={styles.hubPrompt}>{isHi ? 'आप कहाँ पहुँच रहे हैं?' : 'Where are you arriving?'}</h3>
-          <div className={styles.hubGrid}>
-            {hubs.map(hub => (
-              <button key={hub.id} onClick={() => setSelectedHub(hub.id)} className={styles.hubCard}>
-                <span className={styles.hubIcon}>{hub.icon}</span>
-                <span className={styles.hubName}>{hub.name}</span>
-              </button>
-            ))}
-          </div>
-
-          <section className={styles.section}>
-            <h3 className={styles.sectionTitle}>ℹ️ {t.quickInfo}</h3>
-            <div className={styles.tableContainer}>
-              <table className={styles.table}>
-                <tbody>
-                  <tr>
-                    <th>{t.airportLabel}</th>
-                    <td>{t.airportVal}</td>
-                  </tr>
-                  <tr>
-                    <th>{t.metroLabel}</th>
-                    <td>{t.metroVal}</td>
-                  </tr>
-                  <tr>
-                    <th>{t.railLabel}</th>
-                    <td>{t.railVal}</td>
-                  </tr>
-                  <tr>
-                    <th>{t.cabLabel}</th>
-                    <td>{t.cabVal}</td>
-                  </tr>
-                  <tr>
-                    <th>{t.autoLabel}</th>
-                    <td>{t.autoVal}</td>
-                  </tr>
-                </tbody>
-              </table>
+      <section className="bg-mandala border-b bg-secondary/40">
+        <div className="container flex flex-col gap-6 py-10 sm:flex-row sm:items-start sm:justify-between sm:py-14">
+          <div className="max-w-3xl space-y-3">
+            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">{t.subtitle}</span>
+            <h1 className="text-3xl leading-tight font-semibold sm:text-4xl">{t.title}</h1>
+            <p className="flex items-start gap-2 text-muted-foreground">
+              <MapPin className="mt-1 size-4 shrink-0 text-primary" /> {t.address}
+            </p>
+            <div className="flex flex-wrap gap-2 pt-2">
+              <Button asChild size="lg" className="h-10 px-4">
+                <a href={mapUrl} target="_blank" rel="noopener noreferrer">
+                  <MapPin /> {t.mapsBtn}
+                </a>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="h-10 px-4">
+                <a href={pdfUrl} target="_blank" rel="noopener noreferrer">
+                  <Download /> {t.downloadBtn}
+                </a>
+              </Button>
             </div>
-          </section>
-        </>
-      ) : (
-        <>
-          <button onClick={() => setSelectedHub(null)} className={styles.backBtn}>
-            ← {isHi ? 'वापस जाएँ (Back to Options)' : 'Back to Options'}
-          </button>
-
-          {renderSelectedContent()}
-        </>
-      )}
-
-      <section className={styles.section} style={{ marginTop: selectedHub ? '0' : '2rem' }}>
-        <h3 className={styles.sectionTitle}>💡 {t.tipsTitle}</h3>
-        <ul className={styles.tipsList}>
-          {t.tips.map((tip, idx) => (
-            <li key={idx}>{tip}</li>
-          ))}
-        </ul>
+          </div>
+          <Button variant="secondary" size="lg" className="h-10 self-start px-4" onClick={toggleLang}>
+            <Globe /> {isHi ? 'Read in English' : 'हिंदी में पढ़ें'}
+          </Button>
+        </div>
       </section>
 
-      <div className={styles.bottomAction}>
-        <a href={pdfUrl} target="_blank" rel="noopener noreferrer" className={styles.downloadBtn} style={{ padding: '1rem 2rem', fontSize: '1.1rem' }}>
-          📥 {t.downloadBtn}
-        </a>
+      <div className="container mx-auto flex max-w-4xl flex-col gap-6 pt-8">
+        {!selectedHub ? (
+          <>
+            <div className="text-center">
+              <h2 className="text-2xl font-semibold sm:text-3xl">{isHi ? 'आप कहाँ पहुँच रहे हैं?' : 'Where are you arriving?'}</h2>
+              <Ornament className="mt-3" />
+            </div>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+              {hubs.map(({ id, icon: Icon, name }) => (
+                <button
+                  key={id}
+                  type="button"
+                  onClick={() => setSelectedHub(id)}
+                  className="group flex flex-col items-center gap-3 rounded-2xl border bg-card p-5 text-center shadow-sm transition hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-md focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+                >
+                  <span className="grid size-12 place-items-center rounded-full bg-accent text-primary transition group-hover:bg-primary group-hover:text-primary-foreground">
+                    <Icon className="size-6" />
+                  </span>
+                  <span className="text-sm font-semibold">{name}</span>
+                </button>
+              ))}
+            </div>
+
+            <Section icon={Info} title={t.quickInfo}>
+              <div className="overflow-hidden rounded-xl border">
+                <table className="w-full text-sm">
+                  <tbody>
+                    {quickInfoRows.map(([label, value]) => (
+                      <tr key={label} className="border-b last:border-0 even:bg-muted/40">
+                        <th scope="row" className="w-2/5 bg-secondary/60 px-4 py-3 text-left align-top font-semibold">{label}</th>
+                        <td className="px-4 py-3">{value}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </Section>
+          </>
+        ) : (
+          <>
+            <Button variant="ghost" className="self-start" onClick={() => setSelectedHub(null)}>
+              <ArrowLeft /> {isHi ? 'वापस जाएँ (Back to Options)' : 'Back to Options'}
+            </Button>
+
+            {renderSelectedContent()}
+          </>
+        )}
+
+        <Section icon={Lightbulb} title={t.tipsTitle} className={cn(!selectedHub && 'mt-2')}>
+          <ul className="space-y-2.5">
+            {t.tips.map((tip, idx) => (
+              <li key={idx} className="flex gap-3">
+                <span className="mt-2 size-1.5 shrink-0 rounded-full bg-gold" aria-hidden />
+                <span>{tip}</span>
+              </li>
+            ))}
+          </ul>
+        </Section>
+
+        <div className="flex justify-center pt-2">
+          <Button asChild size="lg" className="h-12 rounded-full px-8 text-base">
+            <a href={pdfUrl} target="_blank" rel="noopener noreferrer">
+              <Download /> {t.downloadBtn}
+            </a>
+          </Button>
+        </div>
       </div>
     </div>
   );
@@ -311,7 +346,7 @@ function TravelGuideContent() {
 
 export default function TravelGuidePage() {
   return (
-    <Suspense fallback={<div style={{ padding: '2rem', textAlign: 'center' }}>Loading...</div>}>
+    <Suspense fallback={<div className="p-12 text-center text-muted-foreground">Loading...</div>}>
       <TravelGuideContent />
     </Suspense>
   );

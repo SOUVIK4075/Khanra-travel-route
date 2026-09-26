@@ -1,7 +1,10 @@
 'use client';
 
-import styles from './SearchFilters.module.css';
+import { Search } from 'lucide-react';
 import Autocomplete from './Autocomplete';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 interface SearchFiltersProps {
     searchTerm: string;
@@ -15,6 +18,17 @@ interface SearchFiltersProps {
     onSearchClick?: () => void;
 }
 
+// Radix Select items can't have an empty value, so "any" stands in for "no filter".
+const ANY = 'any';
+
+const DURATIONS = [
+    { value: '1', label: '1 Day' },
+    { value: '2', label: '2 Days' },
+    { value: '3', label: '3 Days' },
+    { value: '4', label: '4 Days' },
+    { value: '5+', label: '5+ Days' },
+];
+
 export default function SearchFilters({
     searchTerm,
     setSearchTerm,
@@ -27,9 +41,11 @@ export default function SearchFilters({
     onSearchClick
 }: SearchFiltersProps) {
     return (
-        <div className={`card ${styles.filters}`}>
-            <div className={styles.inputGroup}>
-                <label htmlFor="search" className={styles.label}>Tirth / Place Name</label>
+        <div className="grid gap-4 rounded-2xl border bg-card/90 p-4 text-left shadow-xl shadow-primary/5 backdrop-blur sm:p-5 md:grid-cols-[2fr_1fr_1fr_auto] md:items-end">
+            <div className="grid gap-2">
+                <Label htmlFor="search" className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+                    Tirth / Place Name
+                </Label>
                 <Autocomplete
                     id="search"
                     placeholder="e.g. Ponnur Malai"
@@ -39,48 +55,50 @@ export default function SearchFilters({
                 />
             </div>
 
-            <div className={styles.inputGroup}>
-                <label htmlFor="state" className={styles.label}>State</label>
-                <select
-                    id="state"
-                    value={selectedState}
-                    onChange={(e) => setSelectedState(e.target.value)}
-                    className={styles.select}
-                >
-                    <option value="">All States</option>
-                    {states.map((state) => (
-                        <option key={state} value={state}>{state}</option>
-                    ))}
-                </select>
+            <div className="grid gap-2">
+                <Label htmlFor="state" className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+                    State
+                </Label>
+                <Select value={selectedState || ANY} onValueChange={(v) => setSelectedState(v === ANY ? '' : v)}>
+                    <SelectTrigger id="state" className="h-11! w-full bg-background">
+                        <SelectValue placeholder="All States" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value={ANY}>All States</SelectItem>
+                        {states.map((state) => (
+                            <SelectItem key={state} value={state}>{state}</SelectItem>
+                        ))}
+                    </SelectContent>
+                </Select>
             </div>
 
-            <div className={styles.inputGroup}>
-                <label htmlFor="duration" className={styles.label}>Duration</label>
-                <select
-                    id="duration"
-                    value={selectedDuration}
-                    onChange={(e) => setSelectedDuration(e.target.value)}
-                    className={styles.select}
-                >
-                    <option value="">Any Duration</option>
-                    <option value="1">1 Day</option>
-                    <option value="2">2 Days</option>
-                    <option value="3">3 Days</option>
-                    <option value="4">4 Days</option>
-                    <option value="5+">5+ Days</option>
-                </select>
+            <div className="grid gap-2">
+                <Label htmlFor="duration" className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+                    Duration
+                </Label>
+                <Select value={selectedDuration || ANY} onValueChange={(v) => setSelectedDuration(v === ANY ? '' : v)}>
+                    <SelectTrigger id="duration" className="h-11! w-full bg-background">
+                        <SelectValue placeholder="Any Duration" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value={ANY}>Any Duration</SelectItem>
+                        {DURATIONS.map(({ value, label }) => (
+                            <SelectItem key={value} value={value}>{label}</SelectItem>
+                        ))}
+                    </SelectContent>
+                </Select>
             </div>
-            
-            <div className={styles.searchActionGroup}>
-                <button 
-                  className={`btn btn-primary ${styles.searchBtn}`} 
-                  onClick={onSearchClick}
-                  aria-label="Search Routes"
-                  type="button"
-                >
-                    Search
-                </button>
-            </div>
+
+            <Button
+                size="lg"
+                className="h-11 px-6 text-sm font-semibold"
+                onClick={onSearchClick}
+                aria-label="Search Routes"
+                type="button"
+            >
+                <Search />
+                Search
+            </Button>
         </div>
     );
 }

@@ -42,8 +42,11 @@ export async function generateStaticParams() {
     }));
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-    const itinerary = itineraries.find((i) => i.id === params.id);
+type PageProps = { params: Promise<{ id: string }> };
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { id } = await params;
+    const itinerary = itineraries.find((i) => i.id === id);
 
     if (!itinerary) {
         return {
@@ -60,8 +63,9 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     };
 }
 
-export default function ItineraryDetails({ params }: { params: { id: string } }) {
-    const rawItinerary = itineraries.find((i) => i.id === params.id);
+export default async function ItineraryDetails({ params }: PageProps) {
+    const { id } = await params;
+    const rawItinerary = itineraries.find((i) => i.id === id);
 
     if (!rawItinerary) {
         notFound();
@@ -95,7 +99,13 @@ export default function ItineraryDetails({ params }: { params: { id: string } })
     };
 
     return (
-        <Suspense fallback={<div>Loading itinerary...</div>}>
+        <Suspense
+            fallback={
+                <div className="container flex min-h-[50vh] items-center justify-center text-muted-foreground">
+                    Loading itinerary...
+                </div>
+            }
+        >
             <ItineraryClient itinerary={enrichedItinerary} />
         </Suspense>
     );
