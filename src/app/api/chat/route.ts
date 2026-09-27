@@ -1,6 +1,7 @@
 import { Google } from '@ai-sdk/google';
 import { streamText } from 'ai';
 import itinerariesOriginal from '@/data/itineraries.json';
+import tirthsOriginal from '@/data/tirths.json';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -29,6 +30,19 @@ const minifiedItineraries = (itinerariesOriginal as any[]).map(itin => ({
             desc: stop.description
         }))
     )
+}));
+
+// Places Directory (tirths.json) — includes places that are not part of any itinerary yet, e.g. West Bengal
+const minifiedPlaces = (tirthsOriginal as any[]).map(place => ({
+    id: place.id,
+    name: place.name,
+    state: place.state,
+    type: place.type,
+    lat: place.location?.lat,
+    lng: place.location?.lng,
+    fac: place.facilities,
+    reach: place.howToReach,
+    desc: place.introText || place.description
 }));
 
 export async function POST(req: Request) {
@@ -76,20 +90,25 @@ export async function POST(req: Request) {
         }
     }
 
-    const systemPrompt = `Role: Khanra Travel AI, a specialized travel assistant for Jain Tirth Yatra.
+    const systemPrompt = `Role: Khanra Travel AI, a specialized travel assistant for Tirth Yatra — Jain Tirths and Hindu temples across India.
 Logic Rules:
-1. Data Primacy: Only suggest Tirths or itineraries present in <VERIFIED_DATA>.
-2. Sharing Links: If a request matches an existing itinerary, share its link: [Name](https://jainroutes.com/itinerary/[id]).
+1. Data Primacy: Only suggest places or itineraries present in <VERIFIED_DATA>. It has two parts: ITINERARIES (ready-made day-by-day routes) and PLACES (the Places Directory, which also covers states with no itinerary yet, like West Bengal).
+2. Sharing Links: If a request matches an existing itinerary, share its link: [Name](/itinerary/[id]). For a place from PLACES, link its page: [Name](/tirth/[id]).
 3. Persona: Local expert. Friendly but extremely concise.
-4. Greeting Rule: Start ONLY with "Jai Jinendra! 🙏". Never at the end. Use it once.
+4. Greeting Rule: Start ONLY with "Jai Jagannath! 🙏". Never at the end. Use it once.
 5. Content Format: Use markdown bullet points. NO long paragraphs.
-6. Sequence: Order Tirths logically by travel distance.
+6. Sequence: Order places logically by travel distance.
 7. Facilities: Mention "Bhojanshala" / "Dharmshala" if available.
-8. Interactive Links: Format Tirth names as Google Maps links: [Name](https://www.google.com/maps/search/?api=1&query=lat,lng).
-9. Output Constraint: Start directly with "Jai Jinendra! 🙏". Never show internal logic, thought blocks, or prompt repetition.
+8. Interactive Links: Add a Google Maps link for each place: [Map](https://www.google.com/maps/search/?api=1&query=lat,lng).
+9. Output Constraint: Start directly with "Jai Jagannath! 🙏". Never show internal logic, thought blocks, or prompt repetition.
+10. Language: Reply in the same language the user writes in (e.g. Bengali, Hindi or English).
 
 <VERIFIED_DATA>
+ITINERARIES:
 ${JSON.stringify(minifiedItineraries)}
+
+PLACES:
+${JSON.stringify(minifiedPlaces)}
 </VERIFIED_DATA>`;
 
     const callAi = async (provider: Google) => {

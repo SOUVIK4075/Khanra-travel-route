@@ -11,7 +11,7 @@ export default function NotFound() {
                 <Ornament className="my-4" />
                 <h2 className="mb-3 text-2xl font-semibold sm:text-3xl">Page Not Found</h2>
                 <p className="mb-8 max-w-md text-muted-foreground">
-                    Jai Jinendra! 🙏 The page you are looking for might have been removed,
+                    Jai Jagannath! 🙏 The page you are looking for might have been removed,
                     had its name changed, or is temporarily unavailable.
                 </p>
                 <Button asChild size="lg" className="h-11 rounded-full px-6">

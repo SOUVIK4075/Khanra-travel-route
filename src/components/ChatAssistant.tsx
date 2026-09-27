@@ -56,7 +56,7 @@ export default function ChatAssistant() {
                         {messages.length === 0 && (
                             <div className={cn('max-w-[85%] self-start rounded-2xl rounded-bl-sm border bg-card px-3.5 py-2.5', markdownClass)}>
                                 <ReactMarkdown>
-                                    {`Jai Jinendra! 🙏 I'm your Khanra Travel Assistant. I can help you plan your Tirth Yatra. Try asking "Plan a 5-day round trip from Bangalore", "How to reach Kundalpur from Nagpur?" or "Does sravanbelgola have dharmshala / bhojanshala?"`}
+                                    {`Jai Jagannath! 🙏 I'm your Khanra Travel Assistant. I can help you plan your Tirth Yatra. Try asking "Plan a 5-day round trip from Bangalore", "Which temples can I visit in West Bengal?" or "Does sravanbelgola have dharmshala / bhojanshala?"`}
                                 </ReactMarkdown>
                             </div>
                         )}

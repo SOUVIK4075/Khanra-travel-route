@@ -375,7 +375,7 @@ export default function SubmitItinerary() {
 
             const jsonString = JSON.stringify(itineraryData, null, 2);
 
-            emailBody = `Jai Jinendra! 🙏
+            emailBody = `Jai Jagannath! 🙏
 
 New Detailed Itinerary Submission for Khanra Travel.
 
@@ -395,7 +395,7 @@ ${jsonString}
 
 --- END JSON ---`;
         } else {
-            emailBody = `Jai Jinendra! 🙏
+            emailBody = `Jai Jagannath! 🙏
 
 New Quick Outline Submission for Khanra Travel.
 
